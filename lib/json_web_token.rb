@@ -45,7 +45,8 @@ class JsonWebToken
 
   def self.decode(token)
     # decode the token with the same key from the configuration
-    body = JWT.decode(token, Rails.application.secrets.secret_key_base)
+    # [0] is to get the body (first object in result) not the metadata
+    body = JWT.decode(token, Rails.application.secrets.secret_key_base)[0]
     # Return the body with constants working as keys instead of just strings
     return HashWithIndifferentAccess.new(body)
   # if the decoding has an error reutrn nil
@@ -60,10 +61,10 @@ class JsonWebToken
 
   # Example: JsonWebToken.valid_payload({exp: 1.day.ago}) #=> false
 
-  def self.valid_payload(payload)
+  def self.valid_payload?(payload)
     # TODO add meta checks as well if needed.
     # if it is invalid return false
-    if expired(payload) 
+    if expired?(payload) 
       return false
     else
       return true
@@ -75,7 +76,7 @@ class JsonWebToken
 
   # Example: JsonWebToken.expired({exp: 1.day.from_now}) #> false
 
-  def self.expired(payload)
+  def self.expired?(payload)
     Time.at(payload['exp']) < Time.now
   end
 
