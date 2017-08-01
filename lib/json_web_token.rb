@@ -1,5 +1,7 @@
 require 'jwt'
 
+# Custom JWT handler for API authentication
+
 class JsonWebToken
 
   def self.encode(payload, exp = 7.days.from_now)
@@ -27,7 +29,7 @@ class JsonWebToken
       return true
     end
   end
-  
+
   # check if the token is expired
   def self.expired(payload)
     Time.at(payload['exp']) < Time.now
