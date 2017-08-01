@@ -18,4 +18,19 @@ class JsonWebToken
   rescue
     return nil
   end
+
+  def self.valid_payload(payload)
+    # TODO add meta checks as well if needed.
+    if expired(payload)
+      return false
+    else
+      return true
+    end
+  end
+  
+  # check if the token is expired
+  def self.expired(payload)
+    Time.at(payload['exp']) < Time.now
+  end
+
 end
