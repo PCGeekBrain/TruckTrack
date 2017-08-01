@@ -15,6 +15,11 @@ RSpec.describe User, :type => :model do
       it "has a email" do
         expect(User.new).to respond_to(:email)
       end
+
+      it "has a role that defaults to user" do
+        expect(User.new).to respond_to(:role)
+        expect(User.new.role).to eq("user")
+      end
       
     end
   
