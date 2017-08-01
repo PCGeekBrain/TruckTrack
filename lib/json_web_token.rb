@@ -15,10 +15,10 @@ require 'jwt'
 # - JsonWebToken.decode(token)
 #   decodes payload from token or nil if invalid
 #
-# - JsonWebToken.valid_payload(payload)
+# - JsonWebToken.valid_payload?(payload)
 #   checks if the payload hash is valid
 #
-# - JsonWebToken.expired(payload)
+# - JsonWebToken.expired?(payload)
 #   checks if the payload hash has expired
 #
 ############################################
@@ -54,12 +54,12 @@ class JsonWebToken
     return nil
   end
 
-  # JsonWebToken.valid_payload(payload)
+  # JsonWebToken.valid_payload?(payload)
   # check if the provided payload is a valid JWT payload.
   # checks the following things:
   #   - exparation
 
-  # Example: JsonWebToken.valid_payload({exp: 1.day.ago}) #=> false
+  # Example: JsonWebToken.valid_payload?({exp: 1.day.ago}) #=> false
 
   def self.valid_payload?(payload)
     # TODO add meta checks as well if needed.
@@ -71,10 +71,10 @@ class JsonWebToken
     end
   end
 
-  # JsonWebToken.expired(payload)
+  # JsonWebToken.expired?(payload)
   # check if the payload is expired
 
-  # Example: JsonWebToken.expired({exp: 1.day.from_now}) #> false
+  # Example: JsonWebToken.expired?({exp: 1.day.from_now}) #> false
 
   def self.expired?(payload)
     Time.at(payload['exp']) < Time.now
