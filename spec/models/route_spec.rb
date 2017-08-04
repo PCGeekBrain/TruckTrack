@@ -39,7 +39,6 @@ RSpec.describe Route, type: :model do
       @route.update(truck: truck)
 
       expect(@route.truck).to eq(truck)
-      binding.pry
       expect(truck.routes.first).to eq(@route)
     end
 
