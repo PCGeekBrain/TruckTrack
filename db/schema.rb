@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804030547) do
+ActiveRecord::Schema.define(version: 20170804153106) do
 
   create_table "deliveries", force: :cascade do |t|
     t.string "invoice_number"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20170804030547) do
     t.string "address"
     t.string "phone_number"
     t.boolean "delivered"
+    t.string "tracking_number"
     t.index ["route_id"], name: "index_deliveries_on_route_id"
   end
 
