@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  # has many routes (for drivers)
+  has_many :routes
+
   # encrypt the password and check for varification
   has_secure_password
 
@@ -30,6 +33,6 @@ class User < ApplicationRecord
   # email:
   # - Must be present
   # - Must be valid (see app/validators/email_validator)
-  validates :email, presence: true, email: true
+  validates :email, email: true
   
 end

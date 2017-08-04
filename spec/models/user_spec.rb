@@ -22,6 +22,16 @@ RSpec.describe User, :type => :model do
       end
       
     end
+
+    describe "Relationships:" do
+      it "has many routes"
+
+      it "has many trucks through routes"
+
+      it "has many deliveries through routes"
+
+      it "has many comments"
+    end
   
     describe "Validations:" do
   
