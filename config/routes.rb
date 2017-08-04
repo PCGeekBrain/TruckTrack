@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
   
   namespace :api do
+    # login
     post 'authenticate' => "login#login"
+
+    # User routes
+    resource :user
+    get 'user/all' => "users#all"
+
+    # Route routes
+
+    # Deliveries Routes
+
+    # Truck Routes
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
