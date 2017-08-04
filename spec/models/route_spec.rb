@@ -22,7 +22,7 @@ RSpec.describe Route, type: :model do
 
     it { should belong_to :truck }
 
-    it "has many deliveries"
+    it { should have_many :deliveries }
 
     it "has many comments through deliveries"
 
