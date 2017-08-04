@@ -15,8 +15,10 @@ class Delivery < ApplicationRecord
   private
   ############################################
   # Hook functions
-  ############################################
+  #
   # #update_delivered_at => sets delivered at to current time if item was delivered.
+  ############################################
+
   def update_delivered_at
     if self.delivered
       self.delivered_at = Time.now
