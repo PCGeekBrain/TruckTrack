@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170804030547) do
     t.string "invoice_number"
     t.integer "route_id"
     t.datetime "delivered_at"
-    t.float "cod"
+    t.float "cod", default: 0.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "address"

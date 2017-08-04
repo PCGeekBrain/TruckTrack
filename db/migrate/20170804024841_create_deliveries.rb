@@ -5,7 +5,7 @@ class CreateDeliveries < ActiveRecord::Migration[5.1]
       t.integer :status
       t.belongs_to :route, foreign_key: true
       t.datetime :delivered_at
-      t.float :cod
+      t.float :cod, default: 0
 
       t.timestamps
     end
