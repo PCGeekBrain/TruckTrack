@@ -1,4 +1,11 @@
-# validate email addresses
+#################################################
+# EmailValidator
+#
+# enables email: true validation
+#
+# REGEX Copied from stackoverflow
+#################################################
+
 class EmailValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     # do not check for presence
