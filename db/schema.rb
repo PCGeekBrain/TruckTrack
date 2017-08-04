@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170804153106) do
     t.boolean "delivered"
     t.string "tracking_number"
     t.index ["route_id"], name: "index_deliveries_on_route_id"
+    t.index ["tracking_number"], name: "index_deliveries_on_tracking_number", unique: true
   end
 
   create_table "routes", force: :cascade do |t|
