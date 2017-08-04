@@ -21,7 +21,7 @@ RSpec.describe Route, type: :model do
 
     before(:each) do
       @user = User.create(username: "localhost", password: "password", password_confirmation: "password")
-      @route = Route.new
+      @route = Route.new(:log_number => "001")
     end
 
     it "belongs to a user, aliased as driver" do
@@ -32,7 +32,16 @@ RSpec.describe Route, type: :model do
       expect(@route.user_id).to eq(@user.id)
     end
 
-    it "belongs to a truck"
+    it "belongs to a truck" do
+      expect(@route.truck).to eq(nil)
+
+      truck = Truck.create(name: "truck1")
+      @route.update(truck: truck)
+
+      expect(@route.truck).to eq(truck)
+      binding.pry
+      expect(truck.routes.first).to eq(@route)
+    end
 
     it "has many deliveries"
 
