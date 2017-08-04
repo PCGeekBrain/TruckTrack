@@ -35,6 +35,12 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  ##########################################
+  #
+  # Database configuration
+  #
+  ##########################################
+
   # Configure each suite to use truncation for the Database Cleaner
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
@@ -56,6 +62,13 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  ##########################################
+  #
+  # Incuding Helpers
+  #
+  ##########################################
+  config.include Requests::JsonHelpers, type: :controller
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
