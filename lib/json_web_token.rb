@@ -50,6 +50,7 @@ class JsonWebToken
     # Return the body with constants working as keys instead of just strings
     return HashWithIndifferentAccess.new(body)
   # if the decoding has an error reutrn nil
+  # TODO throw invalid token error
   rescue
     return nil
   end
