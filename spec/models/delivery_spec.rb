@@ -43,6 +43,8 @@ RSpec.describe Delivery, type: :model do
 
     it { should validate_presence_of :invoice_number}
 
+    it { should validate_uniqueness_of :tracking_number}
+
     it "cod defaults to 0" do
       expect(Delivery.new.cod).to eq(0)
     end
@@ -58,6 +60,22 @@ RSpec.describe Delivery, type: :model do
       invalid_numbers.each do |number|
         should_not allow_value(number).for(:phone_number)
       end
+
+    end
+
+  end
+
+  describe "Hooks:" do
+
+    it "generates 10 character hex tracking number on create" do
+      delivery = Delivery.new(:invoice_number => "156787", route: Route.create(log_number: "1456"))
+      expect(delivery.tracking_number).to eq(nil)
+
+      delivery.save # saving to the database should generate the tracking number
+
+      expect(delivery.persisted?).to eq(true)
+      expect(delivery.tracking_number).to_not eq(nil)
+      expect(delivery.tracking_number.length).to eq(10)
 
     end
 
