@@ -27,12 +27,27 @@ RSpec.describe Truck, type: :model do
   end
 
   describe "Validations" do
+    
+    let(:truck){Truck.new}
 
-    it "validates presence of name"
+    it "validates presence of name" do
+      truck.valid?
+      expect(truck.errors).to include(:name)
+    end
 
-    it "validates uniqueness of name"
+    it "validates uniqueness of name" do
+      Truck.create(name: "test")
+      truck.name="test"
+      truck.valid?
+      expect(truck.errors).to include(:name)
+    end
 
-    it "validates uniqueness of licence"
+    it "validates uniqueness of licence" do
+      Truck.create(name: "test", licence: "test")
+      truck.licence="test"
+      truck.valid?
+      expect(truck.errors).to include(:licence)
+    end
   end
 
 end
