@@ -8,7 +8,7 @@ module AuthenticationError
   class NotAuthenticatedError < StandardError
   end
 
-  class AuthenticationTimeoutError < StandardError
+  class TimeoutError < StandardError
   end
 
 end
