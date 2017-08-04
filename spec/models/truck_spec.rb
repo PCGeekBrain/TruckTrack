@@ -31,7 +31,21 @@ RSpec.describe Truck, type: :model do
 
     it "has many deliveries through routes"
 
-    it "has many drivers through routes"
+    it "has many drivers through routes" do
+      driver1 = User.create(username: "username", password: "password", password_confirmation: "password")
+      driver2 = User.create(username: "localhost", password: "password", password_confirmation: "password")
+
+      @route1.update(driver: driver1);
+
+      expect(@truck.drivers.count).to eq(1)
+      expect(@truck.drivers.first).to eq(driver1)
+
+      @route2.update(driver: driver2);
+
+      expect(@truck.drivers.count).to eq(2)
+      expect(@truck.drivers.last).to eq(driver2)
+      
+    end
 
   end
 
