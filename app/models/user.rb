@@ -26,11 +26,8 @@ class User < ApplicationRecord
 
   # password:
   # - Must be between 8 and 40 characters
-  validates :password, length: {within: 8..40}
+  validates :password, length: {within: 8..40}, on: :create
 
-  # password_confirmation:
-  # - Must be present when user is created
-  validates :password_confirmation, presence: true, on: :create
 
   # email:
   # - Must be present
