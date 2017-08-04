@@ -1,4 +1,4 @@
-class LoginController < ApplicationController
+class Api::LoginController < ApplicationController
 
   def login
     # find the user in the database (nil if the username is false)
