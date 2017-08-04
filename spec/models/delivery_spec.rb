@@ -10,6 +10,8 @@ RSpec.describe Delivery, type: :model do
 
     it { should have_db_column :cod }
 
+    it { should have_db_column :tracking_number }
+
     it { should have_db_column :address }
 
     it { should have_db_column :phone_number }
