@@ -24,7 +24,18 @@ RSpec.describe User, :type => :model do
     end
 
     describe "Relationships:" do
-      it "has many routes"
+      
+      before(:each) do
+        @user = User.create(username: "localhost", password: "password", password_confirmation: "password")
+        @route1 = Route.create(driver: @user, log_number: "001")
+        @route2 = Route.create(driver: @user, log_number: "002")
+      end
+
+      it "has many routes" do
+        expect(@user.routes.count).to eq(2)
+        expect(@user.routes).to include(@route1)
+        expect(@user.routes).to include(@route2)
+      end
 
       it "has many trucks through routes"
 
