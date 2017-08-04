@@ -20,9 +20,7 @@ RSpec.describe Truck, type: :model do
 
   end
 
-  describe "Validations" do
-    
-    let(:truck){Truck.new}
+  describe "Validations:" do
 
     it { should validate_presence_of :name }
 
