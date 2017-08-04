@@ -31,15 +31,6 @@ RSpec.describe User, :type => :model do
   
     describe "Validations:" do
   
-      before(:each) do
-        @valid_user_hash = {username: "BobMarly24", 
-                            password: "Password", 
-                            email: "test@test.com",
-                            password_confirmation: "Password"
-                          }
-        @valid_user = User.create(@valid_user_hash)
-      end
-  
       it { should validate_presence_of :username }
   
       it { should validate_uniqueness_of :username}
