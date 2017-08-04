@@ -35,6 +35,8 @@ group :development, :test do
   gem "database_cleaner"
   # open console in code if needed.
   gem "pry"
+  # Makes testing with Rails SO MUCH EASIER. See here: https://github.com/thoughtbot/shoulda
+  gem "shoulda"
 end
 
 group :development do
