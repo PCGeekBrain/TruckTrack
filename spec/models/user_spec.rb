@@ -37,7 +37,16 @@ RSpec.describe User, :type => :model do
         expect(@user.routes).to include(@route2)
       end
 
-      it "has many trucks through routes"
+      it "has many trucks through routes" do
+        truck1 = @route1.create_truck(name: "truck1")
+        @route1.save # this must be saved for the user to find it.
+        expect(@user.trucks.count).to eq(1)
+        expect(@user.trucks.first).to eq(truck1)
+
+        @route2.create_truck(name: "truck2")
+        @route2.save # this must be saved for the user to find it.
+        expect(@user.trucks.count).to eq(2)
+      end
 
       it "has many deliveries through routes"
 

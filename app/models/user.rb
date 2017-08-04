@@ -2,6 +2,8 @@ class User < ApplicationRecord
   # has many routes (for drivers)
   has_many :routes
 
+  has_many :trucks, through: :routes
+
   # encrypt the password and check for varification
   has_secure_password
 
