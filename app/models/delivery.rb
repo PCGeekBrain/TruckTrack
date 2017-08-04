@@ -10,6 +10,8 @@ class Delivery < ApplicationRecord
   # Validations
   validates :invoice_number, presence: true
 
+  validates :phone_number, phone: true
+
   private
   ############################################
   # Hook functions
