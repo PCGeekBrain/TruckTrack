@@ -16,9 +16,18 @@ RSpec.describe Truck, type: :model do
 
   end
 
-  describe "Relationships" do
+  describe "Relationships:" do
 
-    it "has many routes"
+    before(:each) do
+      @truck = Truck.create(name: "truck1")
+      @route1 = @truck.routes.create(log_number: "aa5")
+      @route2 = @truck.routes.create(log_number: "ar7")
+    end
+
+    it "has many routes" do
+      expect(@truck.routes.count).to eq(2)
+      expect(@truck.routes.first).to eq(@route1)
+    end
 
     it "has many deliveries through routes"
 
