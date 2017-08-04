@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804002201) do
+ActiveRecord::Schema.define(version: 20170804003633) do
 
   create_table "routes", force: :cascade do |t|
     t.string "log_number", null: false
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20170804002201) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "truck_id"
+    t.index ["truck_id"], name: "index_routes_on_truck_id"
     t.index ["user_id"], name: "index_routes_on_user_id"
   end
 
