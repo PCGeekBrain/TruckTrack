@@ -93,10 +93,22 @@ RSpec.describe Api::DeliveriesController, type: :controller do
     end
   end
 
-  describe "POST #create"
+  describe "POST #create" do
+    it "creates a delivery for the correct route"
 
-  describe "PUT/PATCH #update"
+    it "requires manager permissions"
+  end
 
-  describe "DELETE #destroy"
+  describe "PUT/PATCH #update" do
+    it "updates the correct delivery"
+
+    it "requires manager permissions"
+  end
+
+  describe "DELETE #destroy" do
+    it "destroys the correct delivery"
+
+    it "requires manager permissions"
+  end
 
 end
