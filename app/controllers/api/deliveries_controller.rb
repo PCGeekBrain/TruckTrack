@@ -40,6 +40,24 @@ class Api::DeliveriesController < ApplicationController
     end
   end
 
+  def track_invoice
+    deliveries = Delivery.where(:invoice_number => params[:invoice_number])
+    if deliveries
+      render json: deliveries
+    else
+      render json: {error: "Delivery not found"}, status: :not_found
+    end
+  end
+
+  def track_number
+    delivery = Delivery.where(:tracking_number => params[:tracking_number])
+    if delivery
+      render json: delivery
+    else
+      render json: {error: "Delivery not found"}, status: :not_found
+    end
+  end
+
   private
 
   def load_route

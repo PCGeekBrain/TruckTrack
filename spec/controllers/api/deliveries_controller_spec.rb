@@ -168,4 +168,28 @@ RSpec.describe Api::DeliveriesController, type: :controller do
     end
   end
 
+
+  describe "GET #track_invoice" do
+    it "returns a list of deliveries with given invoice number" do
+      invoice_number = "12345"
+      delivery1 = @route.deliveries.create(invoice_number: invoice_number)
+      delivery2 = @route.deliveries.create(invoice_number: invoice_number)
+
+      get :track_invoice, params: {invoice_number: invoice_number}
+
+      expect(json.length).to eq(2)
+      expect(json[0]["id"]).to eq(delivery1.id)
+      expect(json[1]["id"]).to eq(delivery2.id)
+    end
+  end
+
+  describe "GET #track_number" do
+    it "returns a list of deliveries with given tracking number" do
+      get :track_number, params: {tracking_number: @delivery.tracking_number}
+
+      expect(json.length).to eq(1)
+      expect(json[0]["id"]).to eq(@delivery.id)
+    end
+  end
+
 end
