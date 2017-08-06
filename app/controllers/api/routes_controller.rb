@@ -3,17 +3,11 @@ class Api::RoutesController < ApplicationController
   before_action :validate_manager, only: [:create, :update, :destroy]
 
   def index
-    render json: Route.all, include: {
-      driver: {only: :username}, 
-      truck: {only: [:id, :name, :licence]}}, 
-      only: [:id, :log_number, :status]
+    render json: Route.all
   end
 
   def show
-    render json: Route.find(params[:id]), include: {
-      driver: {only: :username}, 
-      truck: {only: [:id, :name, :licence]}}, 
-      only: [:id, :log_number, :status]
+    render json: Route.find(params[:id])
   end
 
   def create
