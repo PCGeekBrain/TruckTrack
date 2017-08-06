@@ -1,4 +1,4 @@
-class Api::DeliveryController < ApplicationController
+class Api::DeliveriesController < ApplicationController
 
   def index
   end
