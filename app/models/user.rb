@@ -33,5 +33,12 @@ class User < ApplicationRecord
   # - Must be present
   # - Must be valid (see app/validators/email_validator)
   validates :email, email: true
+
+  # check if the users role is greater then a given role
+  def fits_role?(role)
+    roles = self.class.roles
+    
+    roles[role] ? roles[self.role] >= roles[role] : false
+  end
   
 end

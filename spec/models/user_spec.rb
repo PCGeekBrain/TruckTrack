@@ -44,4 +44,25 @@ RSpec.describe User, :type => :model do
       it { should validate_length_of(:password).is_at_least(8) }
   
     end
+
+    describe "Functions:" do
+
+      describe "#fits_role?" do
+
+        let(:driver){User.create(role: "driver", username: "driver1234", username: "password")}
+
+        it "returns true if user role is greater then given role" do
+          expect(driver.fits_role?("agent")).to eq(true)
+        end
+
+        it "returns true if user role is equal to the given role" do
+          expect(driver.fits_role?("driver")).to eq(true)
+        end
+
+        it "returns false if user role is less then the given role" do
+          expect(driver.fits_role?("admin")).to eq(false)
+        end
+
+      end
+    end
   end
