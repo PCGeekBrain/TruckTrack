@@ -49,7 +49,7 @@ RSpec.describe User, :type => :model do
 
       describe "#fits_role?" do
 
-        let(:driver){User.create(role: "driver", username: "driver1234", username: "password")}
+        let(:driver){User.create(role: "driver", username: "driver1234", password: "password")}
 
         it "returns true if user role is greater then given role" do
           expect(driver.fits_role?("agent")).to eq(true)
