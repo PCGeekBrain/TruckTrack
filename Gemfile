@@ -54,3 +54,6 @@ gem 'foreman', '~> 0.82.0'
 
 # Use RSPEC for Ruby testing
 gem "rspec-rails", :group => [:development, :test]
+
+# Use serializers for Json responses
+gem 'active_model_serializers', '~> 0.10.0'
