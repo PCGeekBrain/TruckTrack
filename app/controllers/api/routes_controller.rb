@@ -17,12 +17,26 @@ class Api::RoutesController < ApplicationController
   end
 
   def create
+    route = Route.create(post_params)
+    render json: route, status: :created
   end
 
   def update
+    route = Route.find(params[:id])
+    if route.update(post_params)
+      render json: route, status: :accepted
+    else
+      render json: {errors: route.errors}, status: :bad_request
+    end
   end
 
   def destroy
+    route = Route.find(params[:id])
+    if route.destroy
+      head :no_content
+    else
+      render json: {error: "Could not delete route"}, status: :bad_request
+    end
   end
 
   private
