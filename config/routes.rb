@@ -18,8 +18,8 @@ Rails.application.routes.draw do
     resources :trucks
 
     # homepage tracking routes
-    get 'deliveries/invoice/:invoice_number' => "deliveries#track_invoice"
-    get 'deliveries/tracking_number/:tracking_number' => "deliveries#track_number"
+    get 'deliveries/invoice/:invoice_number' => "deliveries#track_invoice", as: "track_invoice"
+    get 'deliveries/tracking_number/:tracking_number' => "deliveries#track_number", as: "track_number"
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
