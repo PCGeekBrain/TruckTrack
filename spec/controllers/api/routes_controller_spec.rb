@@ -6,6 +6,11 @@ RSpec.describe Api::RoutesController, type: :controller do
     @user = User.create(username: "localhost", password: "password", role: "admin")
     @truck = Truck.create(name: "truck")
   end
+
+  it "requires authentication" do
+    get :index
+    expect(response.status).to eq(401)
+  end
   
   describe "GET #index" do
 
