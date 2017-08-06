@@ -11,9 +11,9 @@ const setResults = results => {
 
 //** Async Actions */
 export const getResults = ({query, option}) => {
-  console.log(`${API_URL}/deliveries/${option}/${query}`)
+  console.log(`${API_URL}/search/${option}/${query}`)
   return dispatch => {
-    return fetch(`${API_URL}/deliveries/${option}/${query}`)
+    return fetch(`${API_URL}/search/${option}/${query}`)
       .then(response => response.json())
       .then(results => dispatch(setResults(results)))
       .catch(error => console.log(error))
