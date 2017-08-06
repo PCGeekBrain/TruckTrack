@@ -94,21 +94,78 @@ RSpec.describe Api::DeliveriesController, type: :controller do
   end
 
   describe "POST #create" do
-    it "creates a delivery for the correct route"
+    before(:each) do
+      request.headers.merge('Authorization' => "token #{JsonWebToken.encode({id: @admin.id})}")
+      @delivery_hash = {
+        invoice_number: "156789", cod: 95, address: "test address", phone_number: "718 896 5365"
+      }
+    end
 
-    it "requires manager permissions"
+    it "creates a delivery for the correct route" do
+      route_delivery_count = @route.deliveries.count
+
+      post :create, params: {route_id: @route.id, delivery: @delivery_hash}
+
+      expect(response.status).to eq(201) # expect response to be created
+
+      # returns the new item
+      expect(json["invoice_number"]).to eq(@delivery_hash[:invoice_number])
+      expect(json["cod"]).to eq(@delivery_hash[:cod])
+      expect(json["address"]).to eq(@delivery_hash[:address])
+      expect(json["phone_number"]).to eq(@delivery_hash[:phone_number])
+
+
+      expect(@route.deliveries.count).to eq(route_delivery_count + 1)
+      expect(@route.deliveries.last.invoice_number).to eq(@delivery_hash[:invoice_number])
+    end
+
+    it "requires manager permissions" do
+      @admin.update(role: "agent")
+      post :create, params: {route_id: @route.id, delivery: @delivery_hash}
+
+      expect(response.status).to eq(403)
+    end
   end
 
   describe "PUT/PATCH #update" do
-    it "updates the correct delivery"
+    before(:each) do
+      request.headers.merge('Authorization' => "token #{JsonWebToken.encode({id: @admin.id})}")
+    end
 
-    it "requires manager permissions"
+    it "updates the correct delivery" do
+      put :update, params: {route_id: @route.id, id: @delivery.id, delivery: {delivered: true}}
+
+      @delivery.reload
+      expect(@delivery.delivered).to eq(true)
+    end
+
+    it "requires driver permissions" do
+      @admin.update(role: "agent")
+      put :update, params: {route_id: @route.id, id: @delivery.id, delivery: {delivered: true}}
+
+      expect(response.status).to eq(403)
+    end
   end
 
   describe "DELETE #destroy" do
-    it "destroys the correct delivery"
+    before(:each) do
+      request.headers.merge('Authorization' => "token #{JsonWebToken.encode({id: @admin.id})}")
+    end
 
-    it "requires manager permissions"
+    it "destroys the correct delivery" do
+      route_delivery_count = @route.deliveries.count
+      delete :destroy, params: {route_id: @route.id, id: @delivery.id}
+
+      expect(@route.deliveries.count).to eq(route_delivery_count - 1)
+      expect(Delivery.find_by(id: @delivery.id)).to eq(nil)
+    end
+
+    it "requires manager permissions" do
+      @admin.update(role: "agent")
+      delete :destroy, params: {route_id: @route.id, id: @delivery.id}
+
+      expect(response.status).to eq(403)
+    end
   end
 
 end
