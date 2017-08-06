@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'user/all' => "users#all"
 
     # Route routes
+    resources :routes
 
     # Deliveries Routes
 
