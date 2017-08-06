@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::DeliveryController, type: :controller do
+RSpec.describe Api::DeliveriesController, type: :controller do
 
   before(:each) do
     @admin = User.create(role: "admin", username: "localhost", password: "password")
