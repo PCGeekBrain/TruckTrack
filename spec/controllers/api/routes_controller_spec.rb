@@ -1,15 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe Api::RoutesController, type: :controller do
+
+  before(:each) do
+    @user = User.create(username: "localhost", password: "password", role: "admin")
+    @truck = Truck.create(name: "truck")
+  end
   
   describe "GET #index" do
 
     before(:each) do
-      # create the user truck and route
-      user = User.create(username: "localhost", password: "password")
-      @route = Route.create(log_number: "12345", driver: user, truck: Truck.create(name: "truck"))
+      # create the route
+      @route = Route.create(log_number: "12345", driver: @user, truck: @truck)
       # create the token and make the request
-      token = JsonWebToken.encode({id: user.id, username: user.username})
+      token = JsonWebToken.encode({id: @user.id})
       request.headers.merge('Authorization' => "token #{token}")
       # make the request
       get :index
@@ -30,15 +34,34 @@ RSpec.describe Api::RoutesController, type: :controller do
     it "returns each routes log number" do
       expect(json[-1]["log_number"]).to eq(@route.log_number)
     end
+
+  end
+
+  describe "GET #index when user is driver" do
+    before(:each) do
+      @driver = User.create(role: "driver", username: "driver123", password: "password")
+    end
+
+    it "only returns that drivers routes" do
+      route1 = Route.create(driver: @user, truck: @truck, log_number: "11111")
+      route2 = Route.create(driver: @driver, truck: @truck, log_number: "22222")
+
+      request.headers.merge('Authorization' => "token #{JsonWebToken.encode({id: @driver.id})}")
+      get :index
+
+      expect(json.count).to_not eq(Route.count)
+      expect(json.count).to eq(@driver.routes.count)
+
+      expect(json[-1]["id"]).to eq(route2.id)
+    end
   end
 
   describe "GET #show" do
     before(:each) do
       # create the user truck and route
-      user = User.create(username: "localhost", password: "password")
-      @route = Route.create(log_number: "12345", driver: user, truck: Truck.create(name: "truck"))
+      @route = Route.create(log_number: "12345", driver: @user, truck: @truck)
       # create the token and make the request
-      token = JsonWebToken.encode({id: user.id, username: user.username})
+      token = JsonWebToken.encode({id: @user.id})
       request.headers.merge('Authorization' => "token #{token}")
       # make the request
       get :show, params: {id: @route.id}
@@ -72,8 +95,6 @@ RSpec.describe Api::RoutesController, type: :controller do
   describe "POST #create" do
 
     before(:each) do
-      @user = User.create(role: "admin", username: "localhost", password: "password")
-      @truck = Truck.create(name: "truck")
       @route_count = Route.count
     end
 
@@ -95,13 +116,13 @@ RSpec.describe Api::RoutesController, type: :controller do
       post :create, params: {route: {user_id: @user.id, truck_id: @truck.id, log_number: "15896"}}
 
       expect(response.status).to eq(403)
+      expect(Route.count).to eq(@route_count)
     end
   end
 
   describe "PUT/PATCH #update" do
     before(:each) do
-      @user = User.create(role: "admin", username: "localhost", password: "password")
-      @route = Route.create(driver: @user, truck: Truck.create(name: "truck"), log_number: "12345")
+      @route = Route.create(driver: @user, truck: @truck, log_number: "12345")
     end
 
     it "it updates the route" do
@@ -124,8 +145,7 @@ RSpec.describe Api::RoutesController, type: :controller do
 
   describe "DELETE #destroy" do
     before(:each) do
-      @user = User.create(role: "admin", username: "localhost", password: "password")
-      @route = Route.create(driver: @user, truck: Truck.create(name: "truck"), log_number: "12345")
+      @route = Route.create(driver: @user, truck: @truck, log_number: "12345")
       @route_count = Route.count
     end
 

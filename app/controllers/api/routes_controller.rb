@@ -3,7 +3,11 @@ class Api::RoutesController < ApplicationController
   before_action :validate_manager, only: [:create, :update, :destroy]
 
   def index
-    render json: Route.all
+    if current_user.role == "driver"
+      render json: current_user.routes
+    else
+      render json: Route.all
+    end
   end
 
   def show
