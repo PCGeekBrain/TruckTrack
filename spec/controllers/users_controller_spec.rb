@@ -15,11 +15,11 @@ RSpec.describe Api::UsersController, type: :controller do
     @admin_token = JsonWebToken.encode({username: @admin.username, id: @admin.id, email: @admin.email})
   end
 
-  describe "GET #show" do
+  describe "GET #index" do
     
     it "returns user data for plain users" do
       request.headers.merge('Authorization' => "token #{@token}")
-      get :show
+      get :index
 
       expect(json["username"]).to eq(@user.username)
       expect(json["email"]).to eq(@user.email)
@@ -27,11 +27,31 @@ RSpec.describe Api::UsersController, type: :controller do
     end
 
     it "returns http unauthorized if no token is provided" do
-      get :show
+      get :index
 
       expect(response.status).to eq(401)
     end
 
+  end
+
+  describe "GET #index" do
+
+    it "returns the data for the requested user" do
+      request.headers.merge('Authorization' => "token #{@admin_token}")
+      get :show, params: {id: @user.id}
+
+      expect(response.status).to eq(200)
+      expect(json["username"]).to eq(@user.username)
+      expect(json["email"]).to eq(@user.email)
+      expect(json["role"]).to eq(@user.role)
+    end
+
+    it "returns http forbidden if user is not admin" do
+      request.headers.merge('Authorization' => "token #{@token}")
+      get :show, params: {id: @user.id}
+
+      expect(response.status).to eq(403)
+    end
   end
 
   describe "POST #create" do

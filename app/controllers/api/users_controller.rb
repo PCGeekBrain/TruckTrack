@@ -1,13 +1,17 @@
 class Api::UsersController < ApplicationController
   before_action :authenticate_request!
-  before_action :validate_admin, only: [:create, :update, :destroy, :all]
+  before_action :validate_admin, only: [:create, :update, :destroy, :all, :show]
 
   def all
     render json: User.all, only: [:username, :email, :role, :id]
   end
 
-  def show
+  def index
     render json: current_user, only: [:username, :email, :role]
+  end
+
+  def show
+    render json: User.find(params[:id]), only: [:username, :email, :role]
   end
 
   def create

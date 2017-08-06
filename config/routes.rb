@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     post 'authenticate' => "login#login"
 
     # User routes
-    resource :user
+    resources :users
     get 'user/all' => "users#all"
 
     # Route routes
