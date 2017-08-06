@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :routes
 
     # Deliveries Routes
+    resources :deliveries
 
     # Truck Routes
   end
