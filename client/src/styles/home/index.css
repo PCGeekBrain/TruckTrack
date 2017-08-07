@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One|Inconsolata');
 
-.page-home{
+.page-home, .page-login{
   margin-top: 20vh;
 }
 #title{
