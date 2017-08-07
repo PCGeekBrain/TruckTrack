@@ -13,7 +13,7 @@ class Api::LoginController < ApplicationController
       }, status: :ok
     else
       render json: {
-        message: "Username and password are incorrect",
+        error: "Username and password are incorrect",
       }, status: :unauthorized
     end
 
