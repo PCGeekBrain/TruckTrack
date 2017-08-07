@@ -1,14 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router'
+// Components
+import { Route, Redirect } from 'react-router';
+import {Button, Glyphicon} from 'react-bootstrap';
+
+// actions
+import { logOut } from '../actions/login'
 
 const DashboardContainer = (props) => {
   if(props.loggedIn){
     return (
-      <h1>Dashboard coming soon</h1>
+      <div className="dashboard">
+        <h1>Dashboard coming soon</h1>
+        <Button onClick={props.logOut}>Log out <Glyphicon glyph="log-out" /></Button>
+      </div>
     )
   } else {
-    <Redirect to="/login"/>
+    return <Redirect to="/login"/>
   }
 }
 
@@ -18,4 +26,4 @@ function mapStateToProps(state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps)(DashboardContainer)
+export default connect(mapStateToProps, { logOut })(DashboardContainer)
