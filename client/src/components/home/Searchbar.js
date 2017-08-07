@@ -35,8 +35,8 @@ class Searchbar extends Component {
       <form className="search-bar" onSubmit={this.handleSubmit}>
         <FormGroup>
           <InputGroup>
-            <FormControl id="query" type="text" value={this.state.query} onChange={this.handleChange}/>
-            <FormControl id="option" componentClass="select" 
+            <FormControl autoFocus id="query" type="text" value={this.state.query} onChange={this.handleChange}/>
+            <FormControl id="option" componentClass="select"
                 value={this.state.type} onChange={this.handleChange}>
               {options}
             </FormControl>
