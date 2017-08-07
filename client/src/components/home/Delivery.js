@@ -1,12 +1,14 @@
 import React from 'react';
-import '../../styles/home/Delivery.css'
+import '../../styles/home/Delivery.css';
 
 const Delivery = ({tracking_number, status}) => {
   return (
-    <div className="delivery-card">
-      <h3>{tracking_number}</h3>
-      <p>{status}</p>
-    </div>
+    <li className="delivery-li">
+      <div className="delivery-card">
+        <h3>Tracking Code: {tracking_number}</h3>
+        <h4>Status: {status}</h4>
+      </div>
+    </li>
   );
 }
 
