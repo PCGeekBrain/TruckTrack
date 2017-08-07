@@ -25,9 +25,9 @@ RSpec.describe Api::LoginController, type: :controller do
         expect(response).to have_http_status(:unauthorized)
       end
 
-      it "returns 'Username and password are incorrect' message for invalid response" do
+      it "returns 'Username and password are incorrect' error for invalid response" do
         post :login
-        expect(json["message"]).to eq("Username and password are incorrect")
+        expect(json["error"]).to eq("Username and password are incorrect")
       end
 
     end
