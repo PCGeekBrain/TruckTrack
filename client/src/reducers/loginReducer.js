@@ -6,6 +6,9 @@ export default (state = initialState, action) => {
       return {logged_in: false, error: action.error, token: null}
     case "LOGIN_SUCCESS":
       return {logged_in: true, error: null, token: action.token}
+    case "LOG_OUT":
+      localStorage.removeItem('token');
+      return initialState;
     default:
       return state
   }

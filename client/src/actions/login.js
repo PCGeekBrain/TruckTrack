@@ -16,6 +16,12 @@ export const setToken = token => {
   }
 }
 
+export const logOut = () => {
+  return {
+    type: 'LOG_OUT',
+  }
+}
+
 //** Async Actions */
 export const login = ({username, password}) => {
   const body = JSON.stringify({username, password})
