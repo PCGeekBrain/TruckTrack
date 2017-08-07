@@ -18,7 +18,7 @@ export const setToken = token => {
 
 export const logOut = () => {
   return {
-    type: 'LOG_OUT',
+    type: 'LOG_OUT'
   }
 }
 
