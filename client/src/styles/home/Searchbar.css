@@ -1,2 +1,39 @@
-#query {width: 70%;}
-#option {width: 30%;}
+form.search-bar{
+  margin-top: 2%;
+  margin-bottom: 3%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+#query, #option {
+  transition: width 1s;
+}
+#query:focus, #option:focus{
+  box-shadow: none;
+  border: 1px solid #ddd;
+}
+#query {width: 60%; text-align: right}
+#option {width: 40%;}
+
+option {
+  font-weight: bold;
+}
+@media(max-width: 990px){
+  #query {width: 50%;}
+  #option {width: 50%;}
+}
+
+input{
+  font-family: 'Inconsolata', monospace;
+}
+
+input#query, select#option {
+  height: 50px;
+  font-size: 1.2em;
+  font-family: 'Inconsolata', monospace;
+  font-weight: bold;
+}
+
+button.btn.btn-default {
+  height: 50px;
+  width: 80px;
+}
