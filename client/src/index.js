@@ -10,6 +10,10 @@ import App from './components/App';
 import './index.css';
 // Other
 import registerServiceWorker from './registerServiceWorker';
+import { check_login } from './api/login';
+
+// check if the token is in storage and update redux if it is
+check_login(store.dispatch);
 
 ReactDOM.render(
   <Provider store={store}>
