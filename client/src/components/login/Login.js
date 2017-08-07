@@ -30,7 +30,7 @@ class Login extends Component {
             type="text" value={this.state.username} onChange={this.handleChange}/>
           <FormControl autoFocus id="password" name="password" placeholder="Password"
             type="password" value={this.state.password} onChange={this.handleChange}/>
-          <Button type="submit">Login</Button>
+          <Button type="submit"><Glyphicon glyph="log-in" /></Button>
         </FormGroup>
       </form>
     );
