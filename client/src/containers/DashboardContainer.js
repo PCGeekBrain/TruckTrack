@@ -2,18 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 // Components
 import { Route, Redirect } from 'react-router';
-import { Button, Glyphicon } from 'react-bootstrap';
-import DashNav from '../components/dashboard/DashNav'
+import DashNav from '../components/dashboard/DashNav';
+// Styles
+import '../styles/dashboard/index.css';
 
-// actions
-import { logOut } from '../actions/login'
 
 const DashboardContainer = (props) => {
   if(props.loggedIn){
     return (
-      <div className="dashboard">
+      <div className="page-dashboard">
         <DashNav />
-        <Button onClick={props.logOut}>Log out <Glyphicon glyph="log-out" /></Button>
+        <div className="dashboard">
+          
+        </div>
       </div>
     )
   } else {
@@ -27,4 +28,4 @@ function mapStateToProps(state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps, { logOut })(DashboardContainer)
+export default connect(mapStateToProps)(DashboardContainer)
