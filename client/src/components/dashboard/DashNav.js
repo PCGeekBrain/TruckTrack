@@ -51,4 +51,4 @@ const DashNav = ({logOut}) => {
   );
 }
 
-export default connect(null, { logOut })(DashNav)
+export default DashNav;
