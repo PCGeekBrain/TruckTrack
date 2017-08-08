@@ -1,0 +1,4 @@
+/*Move the dashboard down below the fixed navbar*/
+div.dashboard{
+  margin-top: 50px;
+}
