@@ -1,8 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+// actions
+import { logOut } from '../../actions/login';
 // Components used
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
+import FontAwesome from 'react-fontawesome';
 
 // Wrapper for links on the navbar to make them work with react router
 const NavItemLink = (props) => {
@@ -13,27 +17,38 @@ const NavItemLink = (props) => {
   );
 }
 
-const DashNav = () => {
+const DashNav = ({logOut}) => {
   return (
     <Navbar collapseOnSelect fixedTop>
       <Navbar.Header>
         <Navbar.Brand>
           <NavLink exact to="/dashboard">
-            <strong>Truck</strong>Track
+            <strong><FontAwesome name="truck"/> Truck</strong>Track
           </NavLink>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav pullRight>
-          <NavItemLink exact to="/">Track Package</NavItemLink>
-          <NavItemLink to="/dashboard/routes">Routes</NavItemLink>
-          <NavItemLink to="/dashboard/trucks">Trucks</NavItemLink>
-          <NavItemLink to="/dashboard/drivers">Drivers</NavItemLink>
+          <NavItemLink exact to="/">
+            Track Package <FontAwesome name="archive"/>
+          </NavItemLink>
+          <NavItemLink to="/dashboard/routes">
+            Routes <FontAwesome name="map"/>
+          </NavItemLink>
+          <NavItemLink to="/dashboard/trucks">
+            Trucks <FontAwesome name="truck"/>
+          </NavItemLink>
+          <NavItemLink to="/dashboard/drivers">
+            Drivers <FontAwesome name="users"/>
+          </NavItemLink>
+          <NavItem onClick={logOut}>
+            Log Out <FontAwesome name="sign-out"/>
+          </NavItem>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
 }
 
-export default DashNav
+export default connect(null, { logOut })(DashNav)
