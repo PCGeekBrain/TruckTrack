@@ -46,6 +46,7 @@ class JsonWebToken
   def self.decode(token)
     # decode the token with the same key from the configuration
     # [0] is to get the body (first object in result) not the metadata
+    binding.pry
     body = JWT.decode(token, Rails.application.secrets.secret_key_base)[0]
     # Return the body with constants working as keys instead of just strings
     return HashWithIndifferentAccess.new(body)

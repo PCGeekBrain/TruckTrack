@@ -23,15 +23,7 @@
 module Authentication
   
   # Get the current user for a request
-  def current_user
-    if user_id_in_auth_token? # if the users id is in the token body
-      # Use memoization to reduce database calls
-      @current_user ||= User.find(decoded_auth_token[:id]) # load one from the databse
-    else
-      # Use memoization to reduce instance creation
-      @current_user ||= User.new # create a new invalid user (so it is not nil and can be passed to pundit if needed)
-    end
-  end
+  attr_reader :current_user
 
   protected
 

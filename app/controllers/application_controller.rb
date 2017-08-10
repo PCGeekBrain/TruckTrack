@@ -8,7 +8,11 @@ class ApplicationController < ActionController::API
   rescue_from AuthenticationError::NotAuthenticatedError, with: :user_not_authenticated
 
   def authentication_timeout
-    render json: { errors: ['Authentication Timeout'] }, status: 419
+    begin
+      render json: { errors: ['Authentication Timeout'] }, status: 419
+    rescue => exception
+      binding.pry
+    end
   end
 
   def forbidden_resource
