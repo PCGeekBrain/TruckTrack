@@ -1,4 +1,6 @@
 import fetch from 'isomorphic-fetch';
+import store from '../store';
+import { logOut } from '../actions/login';
 
 export const API_URL = process.env.REACT_APP_API_URL;
 
@@ -19,9 +21,21 @@ export const parseResponse = (response) => {
   return response.json()
     .then(json => {
       if(!response.ok) {
+        if(response.status == 419){
+          store.dispatch(logOut())
+        }
         console.error(json.errors, json.error);
         return Promise.reject(json.errors ? json.errors : json.error)
       }
       return json;
     })
+}
+
+export default {
+  get(url){
+    return fetch(`${API_URL}${url}`, {
+      method: "GET",
+      headers: headers(),
+    }).then(parseResponse)
+  }
 }
