@@ -10,10 +10,11 @@ import '../styles/dashboard/index.css';
 
 // SubContainers
 import TrucksContainer from './TrucksContainer';
+import RoutesContainer from './RoutesContainer';
 
 const TmpComponent = () => <h1>Coming Soon</h1>
 
-const DashboardContainer = ({logged_in, match}) => {
+const DashboardContainer = ({logged_in, logOut, match}) => {
   if(logged_in){
     return (
       <div className="page-dashboard">
@@ -21,7 +22,7 @@ const DashboardContainer = ({logged_in, match}) => {
         <div className="dashboard container">
           <Switch>
             <Route path={match.url + "/trucks"} component={TrucksContainer}/>
-            <Route path={match.url + "/routes"} component={TmpComponent}/>
+            <Route path={match.url + "/routes"} component={RoutesContainer}/>
             <Route path={match.url + "/drivers"} component={TmpComponent}/>
           </Switch>
         </div>
