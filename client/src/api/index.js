@@ -21,7 +21,7 @@ export const parseResponse = (response) => {
   return response.json()
     .then(json => {
       if(!response.ok) {
-        if(response.status == 419){
+        if(response.status === 419 || response.status === 401){
           store.dispatch(logOut())
         }
         console.error(json.errors, json.error);
