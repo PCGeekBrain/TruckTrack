@@ -11,6 +11,7 @@ import '../styles/dashboard/index.css';
 // SubContainers
 import TrucksContainer from './TrucksContainer';
 import RoutesContainer from './RoutesContainer';
+import RouteContainer from './RouteContainer';
 
 const TmpComponent = () => <h1>Coming Soon</h1>
 
@@ -22,7 +23,8 @@ const DashboardContainer = ({logged_in, logOut, match}) => {
         <div className="dashboard container">
           <Switch>
             <Route path={match.url + "/trucks"} component={TrucksContainer}/>
-            <Route path={match.url + "/routes"} component={RoutesContainer}/>
+            <Route exact path={match.url + "/routes"} component={RoutesContainer}/>
+            <Route path={match.url + "/routes/:id"} component={RouteContainer}/>
             <Route path={match.url + "/drivers"} component={TmpComponent}/>
           </Switch>
         </div>
