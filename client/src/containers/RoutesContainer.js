@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
-import { getRoutes } from '../actions/route'
+import { getRoutes } from '../actions/route';
 // components
 import Route from '../components/routes/Route';
 
@@ -10,9 +11,11 @@ class TruckContainer extends Component {
     this.props.getRoutes();
   }
   render() {
-    const routes = this.props.routes.map(route => <Route {...route} />)
+    const routes = this.props.routes.map((route, index) => <NavLink key={index} to={`/dashboard/routes/${route.id}`}>
+        <Route {...route} />
+      </NavLink>)
     return (
-      <div class="page-routes">
+      <div className="page-routes">
         <h1 id="title">Routes Page</h1>
         {routes}
       </div>
