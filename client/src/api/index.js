@@ -58,7 +58,7 @@ export default {
   },
 
   delete(url) {
-    return fetch(`${API}${url}`, {
+    return fetch(`${API_URL}${url}`, {
       method: 'DELETE', 
       headers: headers(),
     })
