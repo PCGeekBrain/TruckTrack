@@ -16,7 +16,7 @@ class TruckContainer extends Component {
       </NavLink>)
     return (
       <div className="page-routes">
-        <h1 id="title">Routes Page</h1>
+        <h1 id="title">All Routes</h1>
         {routes}
       </div>
     );
@@ -25,7 +25,7 @@ class TruckContainer extends Component {
 
 function mapStateToProps(state){
   return {
-    routes: state.routes
+    routes: state.routes.routes
   }
 }
 
