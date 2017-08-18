@@ -8,6 +8,20 @@ const setDeliveries = deliveries => {
   }
 }
 
+export const setActiveDelivery = (delivery) => {
+  return {
+    type: "SET_ACTIVE_DELIVERY",
+    delivery
+  }
+}
+
+export const setShowModal = (show) => {
+  return {
+    type: "SET_SHOW_MODAL",
+    show
+  }
+}
+
 //** Async Actions */
 export const getDeliveries = (route_id) => {
   return dispatch => {
