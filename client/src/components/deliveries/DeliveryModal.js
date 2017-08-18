@@ -14,20 +14,32 @@ class DeliveryModal extends Component {
   }
 
   saveDelivery = (event) => {
-    event.preventDefault();
-    this.props.onSave(this.state)
+    this.props.onSave(this.props.id, this.state)
   }
+
+  onCancel = (event) => {
+    this.props.hide();
+  }
+
+  static defaultProps = {
+    delivery: {
+      invoice_number: "",
+      address: "",
+      cod: "",
+      phone_number: ""
+    }
+  }
+  
   render() {
-    const status_options = this.props.options ? this.props.options.map((option, index) => <option key={index} value={option}>{option}</option>) : [];
     return (
-      <Modal show={true} onHide={this.props.onCancel}>
+      <Modal show={true} onHide={this.onCancel}>
         <Modal.Header closeButton>
           <Modal.Title>Delivery</Modal.Title>
         </Modal.Header>
   
         <Modal.Body>
           <form onSubmit={this.saveDelivery}>
-              <FormControl autoFocus id="invoice_number" type="text" value={this.state.invoice_number} 
+              <FormControl autoFocus id="invoice_number" value={this.state.invoice_number} 
                   onChange={this.updateField} placeholder="Invoice Number"/>
               <FormControl autoFocus id="cod" type="text" value={this.state.cod} 
                   onChange={this.updateField} placeholder="Cash On Delivery"/>
@@ -35,10 +47,6 @@ class DeliveryModal extends Component {
                   onChange={this.updateField} placeholder="Address"/>
               <FormControl autoFocus id="phone_number" type="text" value={this.state.phone_number} 
                   onChange={this.updateField} placeholder="Phone Number"/>
-              <FormControl autoFocus id="status" componentClass="select" value={this.state.status} 
-                  onChange={this.updateField} placeholder="Status">
-                {status_options}
-              </FormControl>
           </form>
         </Modal.Body>
   
