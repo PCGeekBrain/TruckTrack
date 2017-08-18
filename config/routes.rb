@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :users
     get 'user/all' => "users#all"
 
+    get 'routes/options' => "routes#options", as: "route_status_options"
+
     # Route routes
     resources :routes do
       # Deliveries Routes

@@ -1,5 +1,5 @@
 class Api::RoutesController < ApplicationController
-  before_action :authenticate_request!
+  before_action :authenticate_request!, except: :options
   before_action :validate_manager, only: [:create, :update, :destroy]
 
   def index
@@ -35,6 +35,10 @@ class Api::RoutesController < ApplicationController
     else
       render json: {error: "Could not delete route"}, status: :bad_request
     end
+  end
+
+  def options
+    render json: Route.statuses.keys
   end
 
   private
