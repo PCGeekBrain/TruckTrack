@@ -1,7 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-// actions
-import { logOut } from '../../actions/login';
 // Components used
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
