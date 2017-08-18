@@ -4,36 +4,28 @@ import { connect } from 'react-redux';
 import RoutePage from '../components/routes/RoutePage';
 import DeliveryModal from '../components/deliveries/DeliveryModal';
 
-import { getDeliveries } from '../actions/delivery';
+import { getDeliveries, setShowModal, submitDelivery } from '../actions/delivery';
 import { getRoute } from '../actions/route';
 
 class RouteContainer extends Component {
   componentWillMount(){
     // get the route from the api
-    this.props.getRoute(this.props.id)
+    this.props.getRoute(this.props.id);
     // get the deliveries from the api
-    this.props.getDeliveries(this.props.id)
-    this.state = { showModal: false, delivery: undefined }
+    this.props.getDeliveries(this.props.id);
   }
 
-  showModal = (delivery_id) => {
-    const delivery = this.props.deliveries.filter(delivery => delivery.id === delivery_id)
-    this.setState({
-      showModal: true,
-      delivery: delivery ? delivery : {}
-    })
+  onUpdateDelivery = (route_id, delivery) => {
+    this.props.submitDelivery(route_id, delivery);
+    this.props.setShowModal(false);
   }
 
   hideModal = () => {
-    this.setState({showModal: false})
+    this.props.setShowModal(false);
   }
 
-  onCreateDelivery = (delivery) => {
-    // todo, post delivery to server
-    console.log("TODO: post update to server", delivery)
-    this.hideModal()
-    // get all updates to the list (even from others)
-    this.props.getDeliveries(this.props.id)
+  showModal = () => {
+    this.props.setShowModal(true);
   }
 
   render() {
@@ -43,10 +35,12 @@ class RouteContainer extends Component {
         <RoutePage {...this.props.route} 
             deliveries={this.props.deliveries} 
             editDelivery={this.editDelivery}
-            createDelivery={this.showModal} onCreateDelivery={this.onCreateDelivery} /> :
+            createDelivery={this.showModal} /> :
         <h1>Error: Route not found</h1>}
-        {this.state.showModal &&
-          <DeliveryModal delivery={this.state.delivery} onSave={this.onCreateDelivery} onCancel={this.hideModal} />
+        {this.props.showModal &&
+          <DeliveryModal delivery={this.props.delivery} id={this.props.id} 
+            onSave={this.onUpdateDelivery}
+            hide={this.hideModal} options={this.props.status_options} />
         }
       </div>
     )
@@ -56,11 +50,12 @@ class RouteContainer extends Component {
 function mapStateToProps(state, ownProps) {
   const id = parseInt(ownProps.match.params.id, 10); // cast the id to an int. makes life easy :-)
   return {
-    match: ownProps.match,
     id: id,
     route: state.routes.active_route,
-    deliveries: state.deliveries.deliveries
+    deliveries: state.deliveries.deliveries,
+    showModal: state.deliveries.show_modal,
+    delivery: state.deliveries.active_delivery,
   }
 }
 
-export default connect(mapStateToProps, {getDeliveries, getRoute})(RouteContainer);
+export default connect(mapStateToProps, {getDeliveries, getRoute, setShowModal, submitDelivery})(RouteContainer);
