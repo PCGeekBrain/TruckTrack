@@ -1,7 +1,7 @@
 const initialState = {
   deliveries: [],
   show_modal: false,
-  active_delivery: undefined
+  active_delivery: {}
 }
 
 export default (state = initialState, action) => {
@@ -13,9 +13,9 @@ export default (state = initialState, action) => {
         return state
       }
     case "SET_ACTIVE_DELIVERY":
-      return Object.assign({}, state, { active_delivery: action.active_delivery })
-    case "SET_SHOW_MODAL":
-      return Object.assign({}, state, { show_modal: action.show_modal })
+      return Object.assign({}, state, { active_delivery: action.delivery })
+    case "SET_SHOW_DELIVERY_MODAL":
+      return Object.assign({}, state, { show_modal: action.show })
     default:
       return state
   }
