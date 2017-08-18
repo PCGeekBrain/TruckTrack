@@ -16,12 +16,6 @@ class RouteContainer extends Component {
     this.state = { showModal: false, delivery: undefined }
   }
 
-  // onEditDelivery = () => {
-  //   console.log("TODO post data to server")
-  //   // get all updates to the list (even from others)
-  //   this.props.getDeliveries(this.props.id)
-  // }
-
   showModal = (delivery_id) => {
     const delivery = this.props.deliveries.filter(delivery => delivery.id === delivery_id)
     this.setState({
@@ -65,7 +59,7 @@ function mapStateToProps(state, ownProps) {
     match: ownProps.match,
     id: id,
     route: state.routes.active_route,
-    deliveries: state.deliveries
+    deliveries: state.deliveries.deliveries
   }
 }
 
