@@ -14,6 +14,7 @@ const Delivery = (props) => {
 
       {!props.delivered && <button className="btn-delivery btn btn-success btn-lg" onClick={props.onDelivered}>Mark Delivered</button>}
       <button className="btn-delivery btn btn-primary btn-lg" onClick={props.onEdit}>Edit</button>
+      <button className="btn-delivery btn btn-danger btn-lg" onClick={props.onDelete}>Delete</button>
     </div>
   )
 }

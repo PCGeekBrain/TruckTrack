@@ -51,3 +51,11 @@ export const submitDelivery = (route_id, delivery) => {
       .catch(() => dispatch(setActiveDelivery({}))) // even if it failes
   }
 }
+
+
+export const deleteDelivery = (route_id, delivery_id) => {
+  return dispatch => {
+    API.delete(`/routes/${route_id}/deliveries/${delivery_id}`)
+      .catch(() => dispatch(getDeliveries(route_id))) // no content throws error since json is invalid
+  }
+}
