@@ -6,3 +6,10 @@ button.btn-delivery {
   margin: 2% 3%;
   min-width: 25%;
 }
+
+button.btn.create-route-btn {
+  text-align: center;
+  width: 150px;
+  display: block;
+  margin: 0 auto;
+}

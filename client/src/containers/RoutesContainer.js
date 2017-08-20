@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom';
 import { getRoutes } from '../actions/route';
 // components
 import Route from '../components/routes/Route';
+import { Button } from 'react-bootstrap';
+import FontAwesome from 'react-fontawesome';
 
 class TruckContainer extends Component {
   componentWillMount(){
@@ -17,7 +19,12 @@ class TruckContainer extends Component {
     return (
       <div className="page-routes">
         <h1 id="title">All Routes</h1>
-        {routes}
+        <Button className="create-route-btn">
+          Create Route <FontAwesome name="plus"/>
+        </Button>
+        <div id="routes-list">
+          {routes}
+        </div>
       </div>
     );
   }
