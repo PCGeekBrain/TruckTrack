@@ -41,11 +41,11 @@ class DeliveryModal extends Component {
           <form onSubmit={this.saveDelivery}>
               <FormControl autoFocus id="invoice_number" value={this.state.invoice_number} 
                   onChange={this.updateField} placeholder="Invoice Number"/>
-              <FormControl autoFocus id="cod" type="text" value={this.state.cod} 
+              <FormControl id="cod" type="text" value={this.state.cod} 
                   onChange={this.updateField} placeholder="Cash On Delivery"/>
-              <FormControl autoFocus id="address" type="text" value={this.state.address} 
+              <FormControl id="address" type="text" value={this.state.address} 
                   onChange={this.updateField} placeholder="Address"/>
-              <FormControl autoFocus id="phone_number" type="text" value={this.state.phone_number} 
+              <FormControl id="phone_number" type="text" value={this.state.phone_number} 
                   onChange={this.updateField} placeholder="Phone Number"/>
           </form>
         </Modal.Body>
