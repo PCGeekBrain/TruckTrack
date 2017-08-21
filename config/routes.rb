@@ -5,8 +5,10 @@ Rails.application.routes.draw do
     post 'authenticate' => "login#login"
 
     # User routes
+    get 'users/all' => "users#all"
+    get 'users/drivers' => "users#drivers"
+
     resources :users
-    get 'user/all' => "users#all"
 
     get 'routes/options' => "routes#options", as: "route_status_options"
 

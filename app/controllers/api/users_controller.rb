@@ -6,6 +6,10 @@ class Api::UsersController < ApplicationController
     render json: User.all, only: [:username, :email, :role, :id]
   end
 
+  def drivers
+    render json: User.driver, only: [:username]
+  end
+
   def index
     render json: current_user, only: [:username, :email, :role]
   end
