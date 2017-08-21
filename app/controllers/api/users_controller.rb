@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
   end
 
   def drivers
-    render json: User.driver, only: [:username]
+    render json: User.driver, only: [:username, :id]
   end
 
   def index
