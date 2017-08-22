@@ -50,3 +50,19 @@ export const getStatusOptions = () => {
       .then(options => dispatch(setStatusOptions(options)))
   }
 }
+
+export const submitRoute = (route) => {
+  return dispatch => {
+    // set the defaults
+    let url = "/routes"
+    let request = API.post
+    // check if it is an update (we have an id)
+    if (route.id) {
+      url += `/${route.id}`;
+      request = API.patch;
+    }
+    // Push it up to the server
+    return request(url, route)
+      .then(result => dispatch(getRoutes()))
+  }
+}
