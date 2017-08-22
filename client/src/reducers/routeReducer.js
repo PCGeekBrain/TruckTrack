@@ -1,6 +1,6 @@
 const initialState = {
   routes: [], 
-  active_route: undefined,
+  active: undefined,
   showModal: false,
   status_options: []
 }
@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
         return state
       }
     case "SET_ACTIVE_ROUTE":
-      return Object.assign({}, state, { active_route: action.route })
+      return Object.assign({}, state, { active: action.route })
     case "SET_SHOW_ROUTE_MODAL":
       return Object.assign({}, state, { showModal: action.show })
     case "SET_STATUS_OPTIONS":
