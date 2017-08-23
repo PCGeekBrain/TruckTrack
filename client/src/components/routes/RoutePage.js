@@ -16,8 +16,8 @@ const RoutePage = (props) => {
       <h1>Route -> Log number {props.log_number}</h1>
       <ul>
         <li>Status: {props.status}</li>
-        <li>Driver: {props.driver.username}</li>
-        <li>Truck: {props.truck.name}</li>
+        <li>Driver: {props.driver ? props.driver.username : "N/A"}</li>
+        <li>Truck: {props.truck ? props.truck.name : "N/A"}</li>
         <li>Last Updated: {last_updated}</li>
       </ul>
       <h2>
