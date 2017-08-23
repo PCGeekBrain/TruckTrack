@@ -51,7 +51,7 @@ function mapStateToProps(state, ownProps) {
   const id = parseInt(ownProps.match.params.id, 10); // cast the id to an int. makes life easy :-)
   return {
     id: id,
-    route: state.routes.active_route,
+    route: state.routes.active,
     deliveries: state.deliveries.deliveries,
     showModal: state.deliveries.show_modal,
     delivery: state.deliveries.active_delivery,
