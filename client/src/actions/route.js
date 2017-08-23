@@ -8,7 +8,7 @@ const setRoutes = routes => {
   }
 }
 
-const setActiveRoute = route => {
+export const setActiveRoute = route => {
   return {
     type: "SET_ACTIVE_ROUTE",
     route
@@ -19,6 +19,12 @@ export const setShowModal = show => {
   return {
     type: "SET_SHOW_ROUTE_MODAL",
     show
+  }
+}
+
+export const clearModal = () => {
+  return {
+    type: "CLEAR_ROUTE_MODAL"
   }
 }
 
