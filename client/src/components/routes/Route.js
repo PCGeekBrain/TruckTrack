@@ -8,8 +8,7 @@ const Route = ({route, onEdit}) => {
   const last_updated = new Date(route.updated_at).toDateString();
   const edit = (event) => {
     event.preventDefault();
-    event.stopPropagation();
-    onEdit(route)
+    onEdit(event, route)
   }
   return (
     <div className="route-card card">
