@@ -14,7 +14,7 @@ class TruckContainer extends Component {
     this.props.getRoutes();
   }
 
-  showModal = (route = {}) => {
+  showModal = (event, route = {}) => {
     this.props.setActiveRoute(route);
     this.props.setShowModal(true);
   }
@@ -32,7 +32,7 @@ class TruckContainer extends Component {
         <div id="routes-list">
           {routes}
         </div>
-        {this.props.showRouteModal && <RouteModal />}
+        {this.props.showRouteModal && <RouteModal /> /* re render the route so that it updates*/}
       </div>
     );
   }
