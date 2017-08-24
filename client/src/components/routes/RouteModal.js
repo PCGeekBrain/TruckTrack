@@ -11,8 +11,10 @@ class RouteModal extends Component {
 
   componentWillMount(){
     this.setState({...this.props.route});
-    this.props.getStatusOptions();
-    this.props.getDrivers();
+    if(!this.props.status_options.length || !this.props.driver_options.length){
+      this.props.getStatusOptions();
+      this.props.getDrivers();
+    }
   }
 
   updateField = (event) => {
@@ -44,7 +46,7 @@ class RouteModal extends Component {
     const driver_options = this.props.driver_options.map((driver, index) => {
       return <option key={index} value={driver.id}>{driver.username}</option>
     })
-    console.log(this.state, this.props)
+    console.log(this.state, this.props.driver_options)
     return (
       <Modal show={true} onHide={this.hide}>
         <Modal.Header closeButton>
@@ -79,7 +81,6 @@ class RouteModal extends Component {
 function mapStateToProps(state, ownProps) {
   return {
     status_options: state.routes.status_options,
-    showModal: state.routes.showModal,
     driver_options: state.drivers.drivers,
     route: state.routes.active
   }
