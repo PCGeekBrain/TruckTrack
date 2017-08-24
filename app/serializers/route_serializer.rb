@@ -1,5 +1,5 @@
 class RouteSerializer < ActiveModel::Serializer
-  attributes :id, :log_number, :status, :delivery_count, :updated_at
+  attributes :id, :log_number, :status, :delivery_count, :updated_at, :user_id
   belongs_to :driver, serializer: DriverSerializer
   belongs_to :truck, serializer: TruckSerializer
 
