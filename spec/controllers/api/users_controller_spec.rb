@@ -17,13 +17,18 @@ RSpec.describe Api::UsersController, type: :controller do
 
   describe "GET #index" do
     
-    it "returns user data for plain users" do
+    it "returns list of drivers for plain users" do
       request.headers.merge('Authorization' => "token #{@token}")
       get :index
 
-      expect(json["username"]).to eq(@user.username)
-      expect(json["email"]).to eq(@user.email)
-      expect(json["role"]).to eq(@user.role)
+      expect(json.length).to eq(User.driver.count)
+    end
+
+    it "returns list of all users for admins" do
+      request.headers.merge('Authorization' => "token #{@admin_token}")
+      get :index
+
+      expect(json.length).to eq(User.count)
     end
 
     it "returns http unauthorized if no token is provided" do
