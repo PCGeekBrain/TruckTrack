@@ -14,8 +14,6 @@ import RoutesContainer from './dashboard/RoutesContainer';
 import RouteContainer from './dashboard/RouteContainer';
 import DriverContainer from './dashboard/DriverContainer';
 
-const TmpComponent = () => <h1>Coming Soon</h1>
-
 const DashboardContainer = ({logged_in, logOut, match}) => {
   if(logged_in){
     return (
@@ -26,7 +24,7 @@ const DashboardContainer = ({logged_in, logOut, match}) => {
             <Route path={match.url + "/trucks"} component={TrucksContainer}/>
             <Route exact path={match.url + "/routes"} component={RoutesContainer}/>
             <Route path={match.url + "/routes/:id"} component={RouteContainer}/>
-            <Route path={match.url + "/drivers"} component={TmpComponent}/>
+            <Route path={match.url + "/drivers"} component={DriverContainer}/>
           </Switch>
         </div>
       </div>
