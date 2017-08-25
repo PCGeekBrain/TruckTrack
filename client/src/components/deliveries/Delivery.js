@@ -9,7 +9,7 @@ const Delivery = (props) => {
       <h3>{delivered_at}</h3>
 
       <h4>Tracking number: {props.tracking_number}</h4>
-      {props.phone_number && <h4>Phone number: {props.phone_number}</h4>}
+      {props.phone_number && <h4>Phone number: <a href={`tel:props.phone_number`}>{props.phone_number}</a></h4>}
       {props.address && <h4>Address: {props.address}</h4>}
 
       {!props.delivered && <button className="btn-delivery btn btn-success btn-lg" onClick={props.onDelivered}>Mark Delivered</button>}
