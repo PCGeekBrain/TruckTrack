@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { loadTrucks, showModal, deleteTruck} from '../actions/trucks';
+import { loadTrucks, showModal, deleteTruck} from '../../actions/trucks';
 import FontAwesome from 'react-fontawesome';
 
-import Truck from '../components/trucks/Truck';
-import TruckModal from '../components/trucks/TruckModal';
+import Truck from '../../components/trucks/Truck';
+import TruckModal from '../../components/trucks/TruckModal';
 import { Button } from 'react-bootstrap';
 
 import '../styles/trucks/truck.css';
