@@ -1,0 +1,7 @@
+.truck-card{
+  width: 31.33%;
+}
+
+@media(max-width: 1200px){
+  .truck-card{width:100%}
+}
