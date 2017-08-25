@@ -1,17 +1,25 @@
 class Api::UsersController < ApplicationController
   before_action :authenticate_request!
-  before_action :validate_admin, only: [:create, :update, :destroy, :all, :show]
+  before_action :validate_admin, only: [:create, :update, :destroy, :show]
 
-  def all
-    render json: User.all, only: [:username, :email, :role, :id]
+  def info
+    render json: current_user, only: [:username, :email, :role]
+  end
+
+  def roles
+    render json: User.roles.keys
   end
 
   def drivers
-    render json: User.driver, only: [:username, :id]
+    render json: User.driver, only: [:username, :role, :id]
   end
 
   def index
-    render json: current_user, only: [:username, :email, :role]
+    if current_user.admin?
+      render json: User.all, only: [:username, :email, :role, :id]
+    else
+      render json: User.driver, only: [:username, :role, :id]
+    end
   end
 
   def show

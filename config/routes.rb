@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     post 'authenticate' => "login#login"
 
     # User routes
-    get 'users/all' => "users#all"
+    get 'users/info' => "users#info"
+    get 'users/roles' => "users#roles"
     get 'users/drivers' => "users#drivers"
 
     resources :users
