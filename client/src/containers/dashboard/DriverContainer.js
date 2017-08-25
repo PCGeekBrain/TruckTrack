@@ -10,3 +10,5 @@ class DriverContainer extends Component {
     )
   }
 }
+
+export default DriverContainer;
