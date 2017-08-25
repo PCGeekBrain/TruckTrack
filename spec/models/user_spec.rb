@@ -25,8 +25,7 @@ RSpec.describe User, :type => :model do
       it { should have_many :trucks }
 
       it { should have_many :deliveries}
-
-      it "has many comments"
+      
     end
   
     describe "Validations:" do

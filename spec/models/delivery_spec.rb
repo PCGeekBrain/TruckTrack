@@ -35,8 +35,6 @@ RSpec.describe Delivery, type: :model do
 
     it { should have_one :truck }
 
-    it "has many comments"
-
   end
 
   describe "Validations:" do

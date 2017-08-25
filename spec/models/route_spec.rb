@@ -24,8 +24,6 @@ RSpec.describe Route, type: :model do
 
     it { should have_many :deliveries }
 
-    it "has many comments through deliveries"
-
   end
 
   describe "Validations:" do
