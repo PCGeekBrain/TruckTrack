@@ -8,7 +8,7 @@ import Truck from '../../components/trucks/Truck';
 import TruckModal from '../../components/trucks/TruckModal';
 import { Button } from 'react-bootstrap';
 
-import '../styles/trucks/truck.css';
+import '../../styles/trucks/truck.css';
 
 class TruckContainer extends Component {
   componentWillMount() {

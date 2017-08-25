@@ -9,9 +9,10 @@ import DashNav from '../components/dashboard/DashNav';
 import '../styles/dashboard/index.css';
 
 // SubContainers
-import TrucksContainer from './TrucksContainer';
-import RoutesContainer from './RoutesContainer';
-import RouteContainer from './RouteContainer';
+import TrucksContainer from './dashboard/TrucksContainer';
+import RoutesContainer from './dashboard/RoutesContainer';
+import RouteContainer from './dashboard/RouteContainer';
+import DriverContainer from './dashboard/DriverContainer';
 
 const TmpComponent = () => <h1>Coming Soon</h1>
 

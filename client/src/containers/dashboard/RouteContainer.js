@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // components
-import RoutePage from '../components/routes/RoutePage';
-import DeliveryModal from '../components/deliveries/DeliveryModal';
+import RoutePage from '../../components/routes/RoutePage';
+import DeliveryModal from '../../components/deliveries/DeliveryModal';
 
-import { getDeliveries, setShowModal, submitDelivery } from '../actions/delivery';
-import { getRoute } from '../actions/route';
+import { getDeliveries, setShowModal, submitDelivery } from '../../actions/delivery';
+import { getRoute } from '../../actions/route';
 
 class RouteContainer extends Component {
   componentWillMount(){

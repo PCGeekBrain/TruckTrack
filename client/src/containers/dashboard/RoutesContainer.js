@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { getRoutes, setShowModal, setActiveRoute } from '../actions/route';
+import { getRoutes, setShowModal, setActiveRoute } from '../../actions/route';
 // components
-import Route from '../components/routes/Route';
-import RouteModal from '../components/routes/RouteModal';
+import Route from '../../components/routes/Route';
+import RouteModal from '../../components/routes/RouteModal';
 import { Button } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 
