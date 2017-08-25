@@ -4,6 +4,7 @@ import { Modal, Button, FormControl } from 'react-bootstrap';
 // Actions
 import { getStatusOptions, clearModal, submitRoute } from '../../actions/route';
 import { getDrivers } from '../../actions/driver';
+import { loadTrucks } from '../../actions/trucks';
 // Redux
 import { connect } from 'react-redux';
 
@@ -11,9 +12,16 @@ class RouteModal extends Component {
 
   componentWillMount(){
     this.setState({...this.props.route});
-    if(!this.props.status_options.length || !this.props.driver_options.length){
+
+    // if any of these are not set
+    if(!this.props.status_options.length || 
+        !this.props.driver_options.length || 
+        !this.props.truck_options.length)
+    {
+      // load them all
       this.props.getStatusOptions();
       this.props.getDrivers();
+      this.props.loadTrucks();
     }
   }
 
@@ -46,7 +54,9 @@ class RouteModal extends Component {
     const driver_options = this.props.driver_options.map((driver, index) => {
       return <option key={index} value={driver.id}>{driver.username}</option>
     })
-    console.log(this.state, this.props.driver_options)
+    const truck_options = this.props.truck_options.map((truck, index) => {
+      return <option key={index} value={truck.id}>{truck.name}</option>
+    })
     return (
       <Modal show={true} onHide={this.hide}>
         <Modal.Header closeButton>
@@ -65,8 +75,10 @@ class RouteModal extends Component {
               <option disabled value={0}> -- select a driver -- </option>
               {driver_options}
             </FormControl>
-            <FormControl componentClass="select" id="truck_id" value={this.state.truck_id}
+            <FormControl componentClass="select" id="truck_id" value={this.state.truck_id ? this.state.truck_id : 0}
               onChange={this.updateField} placeholder="Truck">
+              <option disabled value={0}> -- select a truck -- </option>
+              {truck_options}
             </FormControl>
           </form>
         </Modal.Body>
@@ -82,8 +94,9 @@ function mapStateToProps(state, ownProps) {
   return {
     status_options: state.routes.status_options,
     driver_options: state.drivers.drivers,
+    truck_options: state.trucks.list,
     route: state.routes.active
   }
 }
 
-export default connect(mapStateToProps, { getStatusOptions, clearModal, submitRoute, getDrivers })(RouteModal)
+export default connect(mapStateToProps, { getStatusOptions, clearModal, submitRoute, getDrivers, loadTrucks })(RouteModal)
