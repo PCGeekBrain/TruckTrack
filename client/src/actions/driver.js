@@ -29,7 +29,14 @@ export const getDrivers = () => {
   }
 }
 
-export const submitDriver = driver => {
+export const getUsers = () => {
+  return dispatch => {
+    return API.get("/users/all")
+      .then(users => dispatch(setDrivers(users)))
+  }
+}
+
+export const submitUser = driver => {
   return dispatch => {
     // set the defaults
     let url = "/users"
@@ -40,14 +47,14 @@ export const submitDriver = driver => {
       request = API.patch;
     }
     // Push it up to the server
-    return request(url, driver)
-      .then(result => dispatch(getDrivers()))
+    return request(url, {user: driver})
+      .then(result => dispatch(getUsers()))
   }
 }
 
-export const deleteDriver = (id) => {
+export const deleteUser = (id) => {
   return dispatch => {
     API.delete(`/users/${id}`)
-      .catch(() => dispatch(getDrivers())) // no content throws error since json is invalid
+      .catch(() => dispatch(getUsers())) // no content throws error since json is invalid
   }
 }
