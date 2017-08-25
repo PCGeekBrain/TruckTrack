@@ -21,9 +21,11 @@ class DriverContainer extends Component {
     return (
       <div className="page-drivers">
         <h1 id="title">Drivers</h1>
+        {drivers.length ?
         <Button className="create-route-btn" onClick={this.show} >
           Create Driver <FontAwesome name="plus"/>
         </Button>
+        : <div className="alert alert-danger">You Cannot Edit Drivers</div>}
         <div id="drivers-list">{drivers}</div>
         {this.props.showDriverModal && <DriverModal /> /* re render the route so that it updates*/}
       </div>
