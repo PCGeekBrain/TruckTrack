@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Button, ButtonGroup } from 'react-bootstrap';
+
 const Delivery = (props) => {
   const delivered_at = props.delivered_at ? "Delivered at: " + new Date(props.delivered_at).toLocaleString() : "Not Delivered Yet";
   return (
@@ -12,9 +14,12 @@ const Delivery = (props) => {
       {props.phone_number && <h4>Phone number: <a href={`tel:props.phone_number`}>{props.phone_number}</a></h4>}
       {props.address && <h4>Address: {props.address}</h4>}
 
-      {!props.delivered && <button className="btn-delivery btn btn-success btn-lg" onClick={props.onDelivered}>Mark Delivered</button>}
-      <button className="btn-delivery btn btn-primary btn-lg" onClick={props.onEdit}>Edit</button>
-      <button className="btn-delivery btn btn-danger btn-lg" onClick={props.onDelete}>Delete</button>
+
+      <ButtonGroup>
+        {!props.delivered && <Button bsStyle="success" bsSize="lg" onClick={props.onDelivered}>Mark Delivered</Button>}
+        <Button bsStyle="primary" bsSize="lg" onClick={props.onEdit}>Edit</Button>
+        <Button bsStyle="danger" bsSize="lg" onClick={props.onDelete}>Delete</Button>
+      </ButtonGroup>
     </div>
   )
 }

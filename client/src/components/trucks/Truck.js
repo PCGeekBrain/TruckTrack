@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from 'react-bootstrap';
+import { Button, ButtonGroup } from 'react-bootstrap';
 
 const Truck = ({truck, onEdit, onDelete}) => {
   const edit = (event) => {
@@ -14,8 +14,10 @@ const Truck = ({truck, onEdit, onDelete}) => {
     <div className="truck-card card">
       <h2 className="truck_name">{truck.name}</h2>
       <h3 className="truck_licence">Licence Plate: {truck.licence ? truck.licence : "N/A"}</h3>
-      <Button bsStyle="primary" onClick={edit}>Edit</Button>
-      <Button bsStyle="danger" onClick={deleteItem}>Delete</Button>
+      <ButtonGroup>
+        <Button bsStyle="primary" onClick={edit}>Edit</Button>
+        <Button bsStyle="danger" onClick={deleteItem}>Delete</Button>
+      </ButtonGroup>
     </div>
   )
 }
