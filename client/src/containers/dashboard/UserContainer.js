@@ -8,6 +8,8 @@ import UserModal from '../../components/users/UserModal';
 import { Button } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 
+import '../../styles/users/user.css';
+
 class UserContainer extends Component {
   componentWillMount(){
     this.props.getUsers();
