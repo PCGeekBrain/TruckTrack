@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Modal, Button, FormControl } from 'react-bootstrap';
 // Actions
 import { getStatusOptions, clearModal, submitRoute } from '../../actions/route';
-import { getDrivers } from '../../actions/driver';
+import { getDrivers } from '../../actions/user';
 import { loadTrucks } from '../../actions/trucks';
 // Redux
 import { connect } from 'react-redux';
@@ -12,15 +12,11 @@ class RouteModal extends Component {
 
   componentWillMount(){
     this.setState({...this.props.route});
-
+    this.props.getDrivers();
     // if any of these are not set
-    if(!this.props.status_options.length || 
-        !this.props.driver_options.length || 
-        !this.props.truck_options.length)
-    {
+    if(!this.props.status_options.length || !this.props.truck_options.length){
       // load them all
       this.props.getStatusOptions();
-      this.props.getDrivers();
       this.props.loadTrucks();
     }
   }
@@ -93,7 +89,7 @@ class RouteModal extends Component {
 function mapStateToProps(state, ownProps) {
   return {
     status_options: state.routes.status_options,
-    driver_options: state.drivers.drivers,
+    driver_options: state.users.drivers,
     truck_options: state.trucks.list,
     route: state.routes.active
   }
