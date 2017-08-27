@@ -1,14 +1,25 @@
 # TruckTrack
-React and Rails SPA for tracking truck shipments
+SPA for simple internal shipment tracking based on invoice numbers and tracking numbers.
+
+## Features
+* User facing tracking system.
+* Drivers only see their own deliveries.
+* Seperate client and server.
+* Uses React for fast UI.
+* Bootstrap for mobile responsiveness.
+* Multiple user roles.
+* JWT authentication with one week timeout.
+* Autologout on JWT timeout
 
 # Configuration
 
-## Dependencies
+## Install Dependencies
 * Rails: `bundle install` in the main folder
 * React: `npm install` in the `/client` directory
 
-## Enviroment Variables
-* `REACT_APP_RAILS_API` => The URL for the RAILS API server. For development this is `http://localhost:3001/api`
+## Required Enviroment Variables
+* React:
+  * `REACT_APP_RAILS_API`: The URL for the API server. For development this is `http://localhost:3001/api`
 
 ## Database
 * run `rake db:migrate` to create the database
@@ -25,7 +36,16 @@ React and Rails SPA for tracking truck shipments
 All forks and pull requests are welcome
 
 ## TODO list:
-[ ] Add Comments
+
+### Server
+- [ ] Use joins in `/routes` call to reduce database hits.
+- [ ] Support `DATABASE_URL` for database connection.
+
+### Client
+- [ ] Show server errors in Dashboard.
+- [ ] Handle 500 errors from server when driver is attempted to be deleted.
+- [ ] Make tracking numbers more user freindly.
+- [ ] Simple "search" for dashboard index views (using an internal state)
 
 # Licence
 This is licenced under the MIT standard licence.
