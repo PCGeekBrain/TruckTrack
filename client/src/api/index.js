@@ -5,7 +5,7 @@ import { logOut } from '../actions/login';
 export const API_URL = process.env.REACT_APP_API_URL;
 
 export const headers = () => {
-  const token = localStorage.getItem('token');
+  const token = store.getState().login.token;
 
   let headers = {
     'Accept': 'application/json',
