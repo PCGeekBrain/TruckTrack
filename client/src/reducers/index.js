@@ -4,7 +4,7 @@ import homeReducer from './homeReducer';
 import loginReducer from './loginReducer';
 import routeReducer from './routeReducer';
 import deliveryReducer from './deliveryReducer';
-import driverReducer from './driverReducer';
+import userReducer from './userReducer';
 import truckReducer from './truckReducer';
 
 export default combineReducers({
@@ -12,6 +12,6 @@ export default combineReducers({
   login: loginReducer,
   routes: routeReducer,
   deliveries: deliveryReducer,
-  drivers: driverReducer,
+  users: userReducer,
   trucks: truckReducer
 })
