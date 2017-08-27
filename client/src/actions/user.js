@@ -1,6 +1,13 @@
 import API from '../api';
 
 /** Action Creators */
+const setUsers = users => {
+  return {
+    type: "SET_USERS",
+    users
+  }
+}
+
 const setDrivers = drivers => {
   return {
     type: "SET_DRIVERS",
@@ -8,20 +15,34 @@ const setDrivers = drivers => {
   }
 }
 
-export const showModal = driver => {
+const setRoles = roles => {
   return {
-    type: "SHOW_DRIVER_MODAL",
-    driver
+    type: "SET_USER_ROLES",
+    roles
+  }
+}
+
+export const showModal = user => {
+  return {
+    type: "SHOW_USER_MODAL",
+    user
   }
 }
 
 export const hideModal = () => {
   return {
-    type: "CLEAR_DRIVER_MODAL",
+    type: "CLEAR_USER_MODAL",
   }
 }
 
 /** Async Actions */
+export const getUsers = () => {
+  return dispatch => {
+    return API.get(`/users`)
+      .then(users => dispatch(setUsers(users)));
+  }
+}
+
 export const getDrivers = () => {
   return dispatch => {
     return API.get(`/users/drivers`)
@@ -29,10 +50,10 @@ export const getDrivers = () => {
   }
 }
 
-export const getUsers = () => {
+export const getRoles = () => {
   return dispatch => {
-    return API.get("/users/all")
-      .then(users => dispatch(setDrivers(users)))
+    return API.get(`/users/roles`)
+      .then(roles => dispatch(setRoles(roles)));
   }
 }
 
@@ -55,6 +76,6 @@ export const submitUser = driver => {
 export const deleteUser = (id) => {
   return dispatch => {
     API.delete(`/users/${id}`)
-      .catch(() => dispatch(getUsers())) // no content throws error since json is invalid
+      .then(() => dispatch(getUsers())) // no content throws error since json is invalid
   }
 }
