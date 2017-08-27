@@ -36,7 +36,7 @@ const DashNav = ({logOut}) => {
           <NavItemLink to="/dashboard/trucks">
             Trucks <FontAwesome name="truck"/>
           </NavItemLink>
-          <NavItemLink to="/dashboard/drivers">
+          <NavItemLink to="/dashboard/users">
             Drivers <FontAwesome name="users"/>
           </NavItemLink>
           <NavItem onClick={logOut}>
