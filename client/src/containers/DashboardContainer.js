@@ -21,7 +21,7 @@ const DashboardContainer = ({logged_in, logOut, match}) => {
         <DashNav logOut={logOut}/>
         <div className="dashboard container">
           <Switch>
-            {/* <Route exact path={match.url} component={RoutesContainer}/> */}
+            <Route exact path={match.url} component={RoutesContainer}/>
             <Route path={match.url + "/trucks"} component={TrucksContainer}/>
             <Route exact path={match.url + "/routes"} component={RoutesContainer}/>
             <Route path={match.url + "/routes/:id"} component={RouteContainer}/>
