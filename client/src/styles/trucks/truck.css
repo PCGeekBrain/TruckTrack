@@ -7,5 +7,9 @@
 }
 
 @media(max-width: 1200px){
-  .truck-card{width:100%}
+  div.truck-card{width:48%}
+}
+
+@media(max-width: 768px){
+  div.truck-card{width:100%}
 }
