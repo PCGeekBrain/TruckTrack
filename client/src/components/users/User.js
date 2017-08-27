@@ -14,7 +14,7 @@ const User = ({user, onEdit, onDelete}) => {
   }
 
   return (
-    <div className="driver-card card">
+    <div className="user-card card">
       <h2>{user.username}</h2>
       <p>{user.role} | {user.email}</p>
       <ButtonGroup>
