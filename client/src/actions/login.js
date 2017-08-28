@@ -33,6 +33,6 @@ export const login = ({username, password}) => {
     }).then(parseResponse)
       .then(result => dispatch(setToken(result.token)))
       .then(result => localStorage.setItem('token', result.token))
-      .catch(error => dispatch(setErrors(error)))
+      .catch(error => dispatch(setErrors(error.error)))
   }
 }
