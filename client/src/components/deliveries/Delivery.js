@@ -16,7 +16,7 @@ const Delivery = (props) => {
 
 
       <ButtonGroup>
-        {!props.delivered && <Button bsStyle="success" bsSize="lg" onClick={props.onDelivered}>Mark Delivered</Button>}
+        {!props.delivered && <Button bsStyle="success" bsSize="lg" onClick={props.onDelivered}>Delivered</Button>}
         <Button bsStyle="primary" bsSize="lg" onClick={props.onEdit}>Edit</Button>
         <Button bsStyle="danger" bsSize="lg" onClick={props.onDelete}>Delete</Button>
       </ButtonGroup>
