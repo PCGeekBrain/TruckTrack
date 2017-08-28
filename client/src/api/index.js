@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import store from '../store';
-import { logOut } from '../actions/login';
+import { logOut, setError } from '../actions/login';
 import { setError } from '../actions/error';
 
 export const API_URL = process.env.REACT_APP_API_URL;
@@ -25,6 +25,7 @@ export const parseResponse = (response) => {
         const error = json.error
         // if the user has an authentication error, log them out
         if(response.status === 419 || response.status === 401){
+          store.dispatch(setError("Your login is invalid or has expired."))
           store.dispatch(logOut())
         } else if(error){ // otherwise display the server error
           store.dispatch(setError(error))
