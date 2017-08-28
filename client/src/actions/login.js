@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 import { API_URL, parseResponse, headers } from '../api';
 
 //** Action Creators */
-const setErrors = error => {
+export const setErrors = error => {
   return {
     type: 'LOGIN_ERRORS',
     error
