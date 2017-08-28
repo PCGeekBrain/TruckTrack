@@ -8,7 +8,7 @@ export default (state = initialState, action) => {
       return {logged_in: true, error: null, token: action.token}
     case "LOG_OUT":
       localStorage.removeItem('token');
-      return initialState;
+      return Object.assign({}, initialState, {error: state.error} );
     default:
       return state
   }
