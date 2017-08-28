@@ -18,7 +18,7 @@ class Api::DeliveriesController < ApplicationController
     if delivery.save
       render json: delivery, status: :created
     else
-      render json: {errors: delivery.errors}, status: :bad_request
+      render json: {error: "Could not create Delivery", errors: delivery.errors}, status: :bad_request
     end
   end
   
@@ -27,7 +27,7 @@ class Api::DeliveriesController < ApplicationController
     if delivery.update(post_params)
       render json: delivery, status: :accepted
     else
-      render json: {errors: delivery.errors}, status: :bad_request
+      render json: {error: "Could not update Delivery", errors: delivery.errors}, status: :bad_request
     end
   end
 

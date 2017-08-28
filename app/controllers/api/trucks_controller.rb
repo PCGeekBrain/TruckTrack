@@ -17,7 +17,7 @@ class Api::TrucksController < ApplicationController
     if truck.save
       render json: truck, status: :created
     else
-      render json: { errors: truck.errors }, status: :bad_request
+      render json: { error: "Could not create Truck", errors: truck.errors }, status: :bad_request
     end
   end
 
@@ -25,7 +25,7 @@ class Api::TrucksController < ApplicationController
     if @truck.update(post_params)
       render json: @truck, status: :accepted
     else
-      render json: { errors: truck.errors }, status: :bad_request
+      render json: { error: "Could not update Truck", errors: truck.errors }, status: :bad_request
     end
   end
 
@@ -33,7 +33,7 @@ class Api::TrucksController < ApplicationController
     if @truck.destroy
       head :no_content
     else
-      render json: { error: "Can't delete Truck" }, status: :bad_request
+      render json: { error: "Could not delete Truck" }, status: :bad_request
     end
   end
 

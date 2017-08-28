@@ -30,7 +30,7 @@ class Api::UsersController < ApplicationController
     if user = User.create(user_params)
       render json: {message: "User created sucessfully."}, status: :created
     else
-      render json: {message: "Could not create User.", errors: user.errors}, status: :bad_request
+      render json: {error: "Could not create User.", errors: user.errors}, status: :bad_request
     end
   end
 
@@ -40,7 +40,7 @@ class Api::UsersController < ApplicationController
     if user.update(user_params)
       render json: {message: "User updated sucessfully."}, status: :accepted
     else
-      render json: {message: "Could not update User.", errors: user.errors}, status: :bad_request
+      render json: {error: "Could not update User.", errors: user.errors}, status: :bad_request
     end
   end
 
@@ -50,7 +50,7 @@ class Api::UsersController < ApplicationController
     if user.destroy
       render json: {message: "User deleted sucessfully."}, status: :accepted
     else
-      render json: {message: "Could not delete User."}, status: :bad_request
+      render json: {error: "Could not delete User."}, status: :bad_request
     end
   end
 

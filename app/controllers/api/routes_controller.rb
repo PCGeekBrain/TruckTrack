@@ -16,7 +16,11 @@ class Api::RoutesController < ApplicationController
 
   def create
     route = Route.create(post_params)
-    render json: route, status: :created
+    if route.persisted?
+      render json: route, status: :created
+    else
+      render json: {error: "Could not create Route", errors: route.errors}, status: :bad_request
+    end
   end
 
   def update
@@ -24,7 +28,7 @@ class Api::RoutesController < ApplicationController
     if route.update(post_params)
       render json: route, status: :accepted
     else
-      render json: {errors: route.errors}, status: :bad_request
+      render json: {error: "Could not update Route", errors: route.errors}, status: :bad_request
     end
   end
 
