@@ -4,6 +4,6 @@ class RouteSerializer < ActiveModel::Serializer
   belongs_to :truck, serializer: TruckSerializer
 
   def delivery_count
-    object.deliveries.count
+    object.deliveries.length
   end
 end
