@@ -22,7 +22,7 @@ class User < ApplicationRecord
   # - Must be greater then 8 characters
   # - Must be present
   # - Must be unique
-  validates :username, presence: true, uniqueness: true, length: {minimum: 8}
+  validates :username, presence: true, uniqueness: true, length: {minimum: 4}
 
   # password:
   # - Must be between 8 and 40 characters
