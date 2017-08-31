@@ -9,7 +9,7 @@ class Route < ApplicationRecord
     loading: 10,
     loaded: 20,
     departed: 30,
-    en_route: 40,
+    "en route": 40,
     returning: 50,
     compleated: 60
   }
