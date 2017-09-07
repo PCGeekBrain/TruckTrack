@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Button, ButtonGroup } from 'react-bootstrap';
+import CounterButton from './CounterButton';
 
 const User = ({user, onEdit, onDelete}) => {
 
@@ -20,6 +21,7 @@ const User = ({user, onEdit, onDelete}) => {
       <ButtonGroup>
         <Button bsStyle="primary" onClick={edit}>Edit</Button>
         <Button bsStyle="danger" onClick={deleteItem}>Delete</Button>
+        <CounterButton bsStyle="info" />
       </ButtonGroup>
     </div>
   )
