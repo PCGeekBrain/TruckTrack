@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170806163053) do
+ActiveRecord::Schema.define(version: 20170907011522) do
 
   create_table "deliveries", force: :cascade do |t|
     t.string "invoice_number"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170806163053) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0
+    t.integer "points", default: 0
   end
 
 end

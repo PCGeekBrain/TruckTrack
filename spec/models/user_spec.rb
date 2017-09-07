@@ -10,6 +10,8 @@ RSpec.describe User, :type => :model do
   
       it { should have_db_column :email }
 
+      it { should have_db_column :points }
+
       it { should define_enum_for :role }
 
       it "has a role that defaults to user" do
