@@ -27,7 +27,8 @@ class Api::UsersController < ApplicationController
   end
 
   def create
-    if user = User.create(user_params)
+    user = User.create(user_params)
+    if user.persisted?
       render json: {message: "User created sucessfully."}, status: :created
     else
       render json: {error: "Could not create User.", errors: user.errors}, status: :bad_request
@@ -46,11 +47,15 @@ class Api::UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-
-    if user.destroy
-      render json: {message: "User deleted sucessfully."}, status: :accepted
-    else
-      render json: {error: "Could not delete User."}, status: :bad_request
+    begin
+      user.destroy
+      if user.destroy
+        render json: {message: "User deleted sucessfully."}, status: :accepted
+      else
+        render json: {error: "Could not delete User."}, status: :bad_request
+      end
+    rescue ActiveRecord::InvalidForeignKey
+      render json: {error: "You cannot delete drivers that already have routes"}, status: :bad_request
     end
   end
 
