@@ -49,9 +49,6 @@ class JsonWebToken
     body = JWT.decode(token, Rails.application.secrets.secret_key_base)[0]
     # Return the body with constants working as keys instead of just strings
     return HashWithIndifferentAccess.new(body)
-  # if the decoding has an error reutrn nil
-  rescue
-    return nil
   end
 
   # JsonWebToken.valid_payload?(payload)

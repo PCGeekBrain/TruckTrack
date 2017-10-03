@@ -1,0 +1,44 @@
+/*Move the dashboard down below the fixed navbar*/
+div.dashboard{
+  margin-top: 50px;
+}
+
+.navbar-nav a, .card {
+  font-family: 'Inconsolata', monospace;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
+  color: #000;
+  background-color: #fafafa;
+}
+
+a.navbar-brand {
+  font-family: 'Alfa Slab One', cursive;
+}
+
+.card {
+  text-align: center;
+  display: inline-block;
+  width: 48%;
+  max-width: 50%;
+  margin: 1%;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  border: 1px solid #eee;
+}
+
+nav.navbar.navbar-default.navbar-fixed-top {
+  background: #fff;
+}
+
+.card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+@media(max-width: 1200px){
+  .card {
+    max-width: 100%;
+    width: 100%;
+  }
+}

@@ -22,19 +22,23 @@ class User < ApplicationRecord
   # - Must be greater then 8 characters
   # - Must be present
   # - Must be unique
-  validates :username, presence: true, uniqueness: true, length: {minimum: 8}
+  validates :username, presence: true, uniqueness: true, length: {minimum: 4}
 
   # password:
   # - Must be between 8 and 40 characters
-  validates :password, length: {within: 8..40}
+  validates :password, length: {within: 8..40}, on: :create
 
-  # password_confirmation:
-  # - Must be present when user is created
-  validates :password_confirmation, presence: true, on: :create
 
   # email:
   # - Must be present
   # - Must be valid (see app/validators/email_validator)
   validates :email, email: true
+
+  # check if the users role is greater then a given role
+  def fits_role?(role)
+    roles = self.class.roles
+    
+    roles[role] ? roles[self.role] >= roles[role] : false
+  end
   
 end

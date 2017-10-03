@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+
+div.delivery-card{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  padding: 15px;
+  font-family: 'Inconsolata', monospace;
+  border: 1px solid #dfdfdf;
+}
+li.delivery-li {
+  display: inline-block;
+  width: 50%;
+  padding: 5px;
+  transition: 0.3s;
+}
+@media(max-width: 990px){
+  li.delivery-li {
+    width: 100%;
+  } 
+}

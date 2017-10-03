@@ -23,7 +23,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
 
 # Use JWT for user authentication to the API
 gem 'jwt'
@@ -54,3 +54,6 @@ gem 'foreman', '~> 0.82.0'
 
 # Use RSPEC for Ruby testing
 gem "rspec-rails", :group => [:development, :test]
+
+# Use serializers for Json responses
+gem 'active_model_serializers', '~> 0.10.0'
