@@ -4,8 +4,12 @@ body {
   font-family: sans-serif;
 }
 
-#licence {
+#usage-licence {
   font-size: .6em;
   text-align: center;
   margin-top: 5%;
+}
+
+input.form-control, select.form-control{
+  margin-bottom: 3%;
 }
