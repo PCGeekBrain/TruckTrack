@@ -73,6 +73,13 @@ export const submitUser = driver => {
   }
 }
 
+export const addPoint = id => {
+  return dispatch => {
+    return API.post(`/users/${id}/addpoint`)
+      .then(result => dispatch(getUsers()))
+  }
+}
+
 export const deleteUser = (id) => {
   return dispatch => {
     API.delete(`/users/${id}`)
