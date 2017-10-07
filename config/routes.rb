@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get 'users/info' => "users#info"
     get 'users/roles' => "users#roles"
     get 'users/drivers' => "users#drivers"
+    post 'users/:id/addpoint' => "users#add_point"
 
     resources :users
 
