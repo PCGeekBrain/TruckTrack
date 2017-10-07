@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
   before_action :authenticate_request!
-  before_action :validate_admin, only: [:create, :update, :destroy, :show]
+  before_action :validate_admin, only: [:create, :update, :destroy, :show, :add_point]
 
   def info
     render json: current_user, only: [:username, :email, :role]
@@ -14,11 +14,21 @@ class Api::UsersController < ApplicationController
     render json: User.driver, only: [:username, :role, :id]
   end
 
+  def add_point
+    user = User.find(params[:id])
+
+    if user.update(points: user.points + 1)
+      render json: {points: user.points, message: "Added new point"}
+    else
+      render json: {error: "Unable to add point", errors: user.errors}, status: :bad_request
+    end
+  end
+
   def index
     if current_user.admin?
-      render json: User.all, only: [:username, :email, :role, :id]
+      render json: User.all, only: [:username, :email, :role, :id, :points]
     else
-      render json: User.driver, only: [:username, :role, :id]
+      render json: User.driver, only: [:username, :role, :id, :points]
     end
   end
 
