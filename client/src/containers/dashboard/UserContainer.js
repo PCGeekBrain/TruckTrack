@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // Actions
-import { showModal, getUsers, deleteUser } from '../../actions/user';
+import { showModal, getUsers, deleteUser, addPoint } from '../../actions/user';
 // Components
 import User from '../../components/users/User';
 import UserModal from '../../components/users/UserModal';
@@ -19,7 +19,9 @@ class UserContainer extends Component {
   destroy = id => {this.props.deleteUser(id)}
 
   render(){
-    const users = this.props.users.map((user, index) => <User user={user} key={index} onEdit={this.show} onDelete={this.destroy}/>)
+    const users = this.props.users.sort((a, b) => b.points - a.points)
+      .map((user, index) => <User user={user} key={index} 
+    onEdit={this.show} onDelete={this.destroy} onAddPoint={this.props.addPoint}/>)
     return (
       <div className="page-users">
         <h1 id="title">Users</h1>
@@ -42,4 +44,4 @@ function mapStateToProps(state, ownProps){
   }
 }
 
-export default connect(mapStateToProps, { showModal, getUsers, deleteUser })(UserContainer);
+export default connect(mapStateToProps, { showModal, getUsers, deleteUser, addPoint })(UserContainer);
