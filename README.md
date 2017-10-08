@@ -19,7 +19,7 @@ SPA for simple internal shipment tracking based on invoice numbers and tracking 
 
 ## Required Enviroment Variables
 * React:
-  * `REACT_APP_RAILS_API`: The URL for the API server. For development this is `http://localhost:3001/api`
+  * `REACT_APP_API_URL`: The URL for the API server. For development this is `http://localhost:3001/api`
 
 ## Database
 * run `rake db:migrate` to create the database
