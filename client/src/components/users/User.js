@@ -3,15 +3,19 @@ import React from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import CounterButton from './CounterButton';
 
-const User = ({user, onEdit, onDelete}) => {
+const User = ({user, onEdit, onDelete, onAddPoint}) => {
 
   const edit = (event) => {
     event.preventDefault();
-    onEdit(event, user)
+    onEdit(event, user);
   }
 
   const deleteItem = () => {
-    onDelete(user.id)
+    onDelete(user.id);
+  }
+
+  const addPoint = () => {
+    onAddPoint(user.id);
   }
 
   return (
@@ -21,7 +25,7 @@ const User = ({user, onEdit, onDelete}) => {
       <ButtonGroup>
         <Button bsStyle="primary" onClick={edit}>Edit</Button>
         <Button bsStyle="danger" onClick={deleteItem}>Delete</Button>
-        <CounterButton bsStyle="info" />
+        <CounterButton bsStyle="info" initial={user.points} onIncrement={addPoint}/>
       </ButtonGroup>
     </div>
   )
