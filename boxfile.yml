@@ -1,0 +1,41 @@
+run.config:
+  engine: ruby
+  engine.config:
+    runtime: ruby-2.3
+  cache_dirs:
+    - vendor
+    - client/node_modules
+  extra_packages:
+    - nodejs
+    - nginx
+  extra_steps:
+    - npm install
+
+deploy.config:
+  before_live:
+    web.api:
+      - rake db:migrate
+
+web.client:
+  routes:
+    - /
+  cwd:
+    client: client
+  start:
+    nginx: nginx -c /app/nginx/client.conf
+    client: npm start
+  
+web.api:
+  routes:
+    - api:/
+  start:
+    nginx: nginx -c /app/nginx/server.conf
+    api: rails s -p 3001
+  writable_dirs:
+    - tmp
+    - log
+  log_watch:
+    rails: 'log/production.log'
+
+data.db:
+  image: nanobox/postgresql:9.5
