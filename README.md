@@ -1,5 +1,5 @@
 # TruckTrack
-SPA for simple internal shipment tracking based on invoice numbers and tracking numbers.
+SPA for simple internal shipment tracking based on invoice numbers and generated tracking numbers.
 
 ## Features
 * User facing tracking system.
