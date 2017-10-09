@@ -23,6 +23,7 @@ SPA for simple internal shipment tracking based on invoice numbers and tracking 
 
 ## Database
 * run `rake db:migrate` to create the database
+* run `rake db:seed` to create the initial admin user
 
 # Deployment
 
