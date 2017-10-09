@@ -26,6 +26,7 @@ module TruckTrack
     # -- all .rb files in that directory are automatically loaded.
 
     # add lib/ to the autoloaded paths
+    config.enable_dependency_loading = true
     config.autoload_paths << Rails.root.join('lib')
 
     # Only loads a smaller set of middleware suitable for API only apps.
