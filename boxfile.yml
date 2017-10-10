@@ -23,7 +23,7 @@ web.client:
     client: client
   start:
     nginx: nginx -c /app/nginx/client.conf
-    client: npm start
+    client: npm run build
   
 web.api:
   routes:
