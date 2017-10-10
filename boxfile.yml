@@ -15,16 +15,15 @@ deploy.config:
   before_live:
     web.api:
       - rake db:migrate
-    web.client:
-      - cd client && npm run build && cd ..
 
 web.client:
   routes:
     - /
-  writable_dirs:
-    - client/build
+  cwd:
+    client: client
   start:
     nginx: nginx -c /app/nginx/client.conf
+    client: npm start
   
 web.api:
   routes:
