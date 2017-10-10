@@ -3,7 +3,11 @@ import store from '../store';
 import { logOut, setErrors } from '../actions/login';
 import { setError } from '../actions/error';
 
-export const API_URL = process.env.REACT_APP_API_URL;
+let API_URL = process.env.REACT_APP_API_URL;
+
+if (process.env.NODE_ENV === "production"){
+  API_URL = window.config.REACT_APP_API_URL
+}
 
 export const headers = () => {
   const token = store.getState().login.token;
