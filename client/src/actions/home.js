@@ -12,7 +12,6 @@ const setResults = results => {
 export const getResults = ({query, option}) => {
   return dispatch => {
     return API.get(`/search/${option}/${query}`)
-      .then(response => response.json())
       .then(results => dispatch(setResults(results)))
       .catch(error => console.log(error))
   }
