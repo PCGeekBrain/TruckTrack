@@ -5,8 +5,8 @@ const Delivery = ({tracking_number, status}) => {
   return (
     <li className="delivery-li">
       <div className="delivery-card">
-        <h3>Tracking Code: {tracking_number}</h3>
-        <h4>Status: {status}</h4>
+        <h3>Status: {status}</h3>
+        <h4>Tracking Code: {tracking_number}</h4>
       </div>
     </li>
   );
