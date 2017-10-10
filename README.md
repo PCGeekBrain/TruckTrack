@@ -73,7 +73,7 @@ There might be a little voice inside that tells you you're not ready; that you n
 
 I assure you, that's not the case.
 
-The only expectation is that the code runs (preferably well), the pull request defines what it actually is and provides a feature that is usefull for thouse using the software. There is a TODO list below where you can add features you are looking for or find requested features that you would like to work on.
+The only expectation is that the code runs (preferably well), the pull request defines what it actually is and provides a feature that is usefull for thouse using the software. There is a TODO list below where you can add features you are looking for or find requested features for insparation.
 
 Thank you for contributing!
 
