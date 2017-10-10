@@ -12,6 +12,8 @@ run.config:
     - npm install
 
 deploy.config:
+  extra_steps:
+    - cd client && npm run build && cd ..
   before_live:
     web.api:
       - rake db:migrate
@@ -21,9 +23,11 @@ web.client:
     - /
   cwd:
     client: client
+  writable_dirs:
+    - client/config
   start:
     nginx: nginx -c /app/nginx/client.conf
-    client: npm start
+    client: node server.js
   
 web.api:
   routes:
