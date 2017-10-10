@@ -1,5 +1,4 @@
-import fetch from 'isomorphic-fetch';
-import { API_URL, parseResponse, headers } from '../api';
+import API from '../api';
 
 //** Action Creators */
 export const setErrors = error => {
@@ -24,13 +23,8 @@ export const logOut = () => {
 
 //** Async Actions */
 export const login = ({username, password}) => {
-  const body = JSON.stringify({username, password})
   return dispatch => {
-    return fetch(`${API_URL}/authenticate`, {
-      method: "POST",
-      headers: headers(),
-      body,
-    }).then(parseResponse)
+    return API.post("/authenticate", {username, password})
       .then(result => dispatch(setToken(result.token)))
       .then(result => localStorage.setItem('token', result.token))
       .catch(error => dispatch(setErrors(error.error)))
