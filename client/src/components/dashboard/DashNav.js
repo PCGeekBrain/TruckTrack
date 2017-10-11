@@ -27,7 +27,7 @@ const DashNav = ({logOut}) => {
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav pullRight>
-          <NavItemLink exact to="/">
+          <NavItemLink exact to="/dashboard/track">
             Track Package <FontAwesome name="archive"/>
           </NavItemLink>
           <NavItemLink to="/dashboard/routes">
