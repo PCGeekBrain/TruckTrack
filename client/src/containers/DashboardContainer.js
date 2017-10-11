@@ -11,6 +11,7 @@ import Error from '../components/dashboard/Error';
 import '../styles/dashboard/index.css';
 
 // SubContainers
+import HomeContainer from './HomeContainer';
 import TrucksContainer from './dashboard/TrucksContainer';
 import RoutesContainer from './dashboard/RoutesContainer';
 import RouteContainer from './dashboard/RouteContainer';
@@ -26,6 +27,7 @@ const DashboardContainer = ({logged_in, logOut, match, clearError, errors}) => {
           {errors_alerts}
           <Switch>
             <Route exact path={match.url} component={RoutesContainer}/>
+            <Route path={match.url + "/track"} component={HomeContainer}/>
             <Route path={match.url + "/trucks"} component={TrucksContainer}/>
             <Route exact path={match.url + "/routes"} component={RoutesContainer}/>
             <Route path={match.url + "/routes/:id"} component={RouteContainer}/>
