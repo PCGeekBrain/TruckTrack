@@ -34,7 +34,7 @@ web.api:
     - api:/
   start:
     nginx: nginx -c /app/nginx/server.conf
-    api: rails s -p 3001
+    api: bundle exec puma -C config/puma.rb -p 3001
   writable_dirs:
     - tmp
     - log
