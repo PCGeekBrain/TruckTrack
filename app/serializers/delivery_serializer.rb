@@ -1,5 +1,6 @@
 class DeliverySerializer < ActiveModel::Serializer
-  attributes :id, :invoice_number, :delivered_at, :cod, :address, :phone_number, :delivered, :tracking_number, :status
+  attributes :id, :invoice_number, :delivered_at, :cod, :address, 
+             :phone_number, :delivered, :tracking_number, :status, :route_number
 
   def status
     if object.delivered
@@ -8,4 +9,9 @@ class DeliverySerializer < ActiveModel::Serializer
       object.route.status
     end
   end
+
+  def route_number
+    object.route.log_number
+  end
+
 end
