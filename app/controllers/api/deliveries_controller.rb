@@ -45,7 +45,7 @@ class Api::DeliveriesController < ApplicationController
     if deliveries
       render json: deliveries
     else
-      render json: {error: "Delivery not found"}, status: :not_found
+      render json: {error: "Invoice not found"}, status: :not_found
     end
   end
 
@@ -54,7 +54,7 @@ class Api::DeliveriesController < ApplicationController
     if delivery
       render json: delivery
     else
-      render json: {error: "Delivery not found"}, status: :not_found
+      render json: {error: "Tracking number not found"}, status: :not_found
     end
   end
 
