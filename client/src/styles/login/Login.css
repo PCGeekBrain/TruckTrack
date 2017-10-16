@@ -1,0 +1,26 @@
+form#login-form{
+  text-align: center;
+  margin-top: 3%;
+}
+
+span#error .alert{
+  margin: 0 auto;
+  opacity: 0;
+  visibility: hidden;
+}
+
+span#error.show .alert{
+  transition: 1s;
+  opacity: 1;
+  visibility: visible;
+}
+
+form#login-form .form-control, .alert{
+  max-width: 500px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+form#login-form button{
+  min-width: 100px;
+}

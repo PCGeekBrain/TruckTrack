@@ -43,11 +43,13 @@ RSpec.describe JsonWebToken do
       expect(JsonWebToken.decode(token)).to eq(decoded_token[0])
     end
 
-    it "returns nil for invalid tokens" do
-      expect(JsonWebToken.decode("")).to eq(nil)
-      
+    it "throws JWT::DecodeError for invalid tokens" do
+      expect{JsonWebToken.decode("")}.to raise_error(JWT::DecodeError)
+    end
+    
+    it "throws JWT::VerificationError if signature is invalid" do
       token = JWT.encode(@payload, "bad_sig")
-      expect(JsonWebToken.decode(token)).to eq(nil)
+      expect{JsonWebToken.decode(token)}.to raise_error(JWT::VerificationError)
     end
   end
 

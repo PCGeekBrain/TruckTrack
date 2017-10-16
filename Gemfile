@@ -9,7 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem "pg"
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -23,7 +23,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
 
 # Use JWT for user authentication to the API
 gem 'jwt'
@@ -35,6 +35,10 @@ group :development, :test do
   gem "database_cleaner"
   # open console in code if needed.
   gem "pry"
+  # Makes testing with Rails SO MUCH EASIER. See here: https://github.com/thoughtbot/shoulda
+  gem "shoulda"
+  # use SQLite3 for development
+  gem 'sqlite3'
 end
 
 group :development do
@@ -52,3 +56,6 @@ gem 'foreman', '~> 0.82.0'
 
 # Use RSPEC for Ruby testing
 gem "rspec-rails", :group => [:development, :test]
+
+# Use serializers for Json responses
+gem 'active_model_serializers', '~> 0.10.0'
