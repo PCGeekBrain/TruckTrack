@@ -1,6 +1,7 @@
 class Api::DeliveriesController < ApplicationController
   # authenticate the user, get the route and validate user role before CRUD operations
   before_action :authenticate_request!, only: [:index, :show, :create, :update, :destroy]
+  before_action :get_current_user, only: [:track_invoice, :track_number]
   before_action :load_route, only: [:index, :show, :create, :update, :destroy]
   before_action :validate_driver, only: :update
   before_action :validate_manager, only: [:create, :destroy]
@@ -43,7 +44,7 @@ class Api::DeliveriesController < ApplicationController
   def track_invoice
     deliveries = Delivery.where(:invoice_number => params[:invoice_number])
     if deliveries
-      render json: deliveries
+      render json: deliveries, scope: current_user
     else
       render json: {error: "Invoice not found"}, status: :not_found
     end
@@ -52,7 +53,7 @@ class Api::DeliveriesController < ApplicationController
   def track_number
     delivery = Delivery.where(:tracking_number => params[:tracking_number])
     if delivery
-      render json: delivery
+      render json: delivery, scope: current_user
     else
       render json: {error: "Tracking number not found"}, status: :not_found
     end
