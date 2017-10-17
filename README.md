@@ -38,6 +38,8 @@ SPA for simple internal shipment tracking based on invoice numbers and generated
 
 Deployment command: `nanobox deploy <dry-run | <app-name> >`
 
+**Note:** To force SSL in production just change the app name after the if statements in `transform` under `deploy.config`
+
 `boxfile.yml` info:
   * run configuration:
     1.  uses the rails 2.3 engine
