@@ -4,9 +4,9 @@ class Api::RoutesController < ApplicationController
 
   def index
     if current_user.role == "driver"
-      render json: current_user.routes.eager_load(:driver, :truck, :deliveries)
+      render json: current_user.routes.eager_load(:driver, :truck, :deliveries).order(:log_number => :desc)
     else
-      render json: Route.eager_load(:driver, :truck, :deliveries)
+      render json: Route.eager_load(:driver, :truck, :deliveries).order(:log_number => :desc)
     end
   end
 
