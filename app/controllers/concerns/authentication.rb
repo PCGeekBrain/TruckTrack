@@ -37,6 +37,12 @@ module Authentication
     raise AuthenticationError::NotAuthenticatedError
   end
 
+  def get_current_user
+    @current_user ||= User.find_by(id: decoded_auth_token[:id])
+  rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError
+    return nil
+  end
+
   # Helper methods
   private
 
