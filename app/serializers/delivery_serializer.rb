@@ -11,7 +11,7 @@ class DeliverySerializer < ActiveModel::Serializer
   end
 
   def route_number
-    object.route.log_number
+    object.route.log_number if current_user
   end
 
 end
