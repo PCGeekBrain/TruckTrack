@@ -22,3 +22,29 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+#page-404{
+  text-align: center;
+  margin-top: 20vh;
+  padding: 3vw;
+  font-family: 'Alfa Slab One', cursive;
+}
+
+img#pic-main-404{
+  height: 30vh;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+#page-404 h1{
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+#page-404 p {
+  font-size: 1.5em;
+}
+
+@keyframes bounce { 
+  0%, 100% {transform: translateY(0);}
+  50% {transform: translateY(-2.5%);}
+}
