@@ -14,6 +14,11 @@ run.config:
 deploy.config:
   extra_steps:
     - cd client && npm run build && cd ..
+  transform:
+    - 'if [ $APP_NAME == "trucktrack" ]; then sed -ie "s/#RM //g" nginx/client.conf; fi'
+    - nginx -c /app/nginx/client.conf -t
+    - 'if [ $APP_NAME == "trucktrack" ]; then sed -ie "s/#RM //g" nginx/server.conf; fi'
+    - nginx -c /app/nginx/server.conf -t
   before_live:
     web.api:
       - rake db:migrate
